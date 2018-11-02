@@ -36,7 +36,9 @@ En base a lo comentado anteriormente, se va a elegir una arquitectura basada en 
 
 - Para la comunicación entre los distintos servicios se utilizará el broker RabbitMQ, el cual permitirá que un determinado servicio que quiere enviar un mensaje a otro servicio, pueda dejarlo en manos de RabbitMQ (que se encargará de enviarlo) y continuar con su tarea. De esta forma tenemos una comunicación por mensajes asíncrona permitiendo que el servicio no tenga que esperar sin hacer nada hasta entregar el mensaje. En concreto, se utilizará RabbitMQ con la biblioteca Pika de Python.
 
-- Para el desarrollo de los microservicios se va a usar el microframework web [Flask](http://flask.pocoo.org/) para Python. Por otro lado, para las conexiones con las base de datos de MongoDB se utilizará [MongoAlchemy](https://pythonhosted.org/Flask-MongoAlchemy/), que da soporte para la utilización de MongoDB desde Flask.
+### Desarrollo
+
+Para el desarrollo de los microservicios se va a usar el microframework web [Flask](http://flask.pocoo.org/) para Python. Por otro lado, para las conexiones con las base de datos de MongoDB se utilizará [MongoAlchemy](https://pythonhosted.org/Flask-MongoAlchemy/), que da soporte para la utilización de MongoDB desde Flask.
 
 
 ### Hitos en los que se organiza el proyecto
