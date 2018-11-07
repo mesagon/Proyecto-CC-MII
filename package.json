@@ -1,6 +1,6 @@
 {
-  "name": "Login con nodejs y express",
-  "version": "1.0",
+  "name": "Login-con-nodejs-y-express",
+  "version": "1.0.0",
   "description": "Servicio para registro creado con nodejs y express",
   "engines": {
     "node": "10.x"
@@ -12,7 +12,14 @@
   },
   "dependencies": {
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "express-messages": "^1.0.1",
+    "express-validator": "^5.3.0",
+    "mongodb": "^3.1.9",
+    "mongoose": "^5.3.10",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "request": "^2.88.0",
@@ -28,5 +35,5 @@
     "heroku",
     "express"
   ],
-  "license": "GPL 3.0"
+  "license": "AGPL-3.0-only"
 }
