@@ -1,0 +1,32 @@
+{
+  "name": "Login con nodejs y express",
+  "version": "1.0",
+  "description": "Servicio para registro creado con nodejs y express",
+  "engines": {
+    "node": "10.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit test/test.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "request": "^2.88.0",
+    "supertest": "^3.3.0",
+    "tape": "^4.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mesagon/Proyecto-CC-MII"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "GPL 3.0"
+}
