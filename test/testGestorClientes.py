@@ -138,5 +138,8 @@ class testGestorClientes(unittest.TestCase):
 if __name__ == "__main__":
 
     unittest.main()    
-        
+
+    for name in dir():
+        if not name.startswith('_'):
+            del globals()[name]        
     

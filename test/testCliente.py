@@ -72,7 +72,10 @@ if __name__ == "__main__":
     
     unittest.main()
     
-        
+    # Limpiar los tests de la memoria
+    for name in dir():
+        if not name.startswith('_'):
+            del globals()[name]    
         
 
 

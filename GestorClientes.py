@@ -71,7 +71,7 @@ class GestorClientes:
      
     # Modificar nombre cliente.
     def setNombre(self,mail,nombre):
-         
+        
         # Si existe el cliente, cambiamos el parametro,
         # sino no. 
         if(mail in self.__clientes):
