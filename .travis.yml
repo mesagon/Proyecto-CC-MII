@@ -1,0 +1,13 @@
+language: python
+python:
+- '3.6'
+- '3.4'
+install:
+- pip install pipenv
+- pipenv install
+script: python test/testApp.py; python test/testCliente.py; python testGestorClientes.py
+deploy:
+  provider: heroku
+  api_key:
+    secure: mcrrP9lcxyfzz+Xc9yzsCqPhRSRuT+E7AvBtovj6QiWMaDKZQO3NQCwfZLbDqVehtYVme/e0RJ2XgEhvmCrJ8gbvqI149iOxoR/dlQCulEehGGIhfEdFr8O1vcgtaO8fDoMH55xgs+UDokcDOiSUhpIPGNQR/CsQHkYVORwfQm8d48rtqeMnuX/iO8JZCDDrcdOE/OmxBba1k7dcXmdqDsr65VBHi07RWFv5Ruh8s7zb89hnz+cRV+vEMuGwnTcCU5T/ANl9rzdPxr6ozKUJuMQ++dy3cIvrsaKn8J9/l/cEiwj+n0NDJ40QLzjOGUudhf9uILuveR+tRaDeumMGgX4zGh8qcdIDnnR8fnF+gaAUwYwqrfkBezNEk7Fsjpqg4pEBp9mAsrgfOdNYALmGDbQr/wkwIFubqdRHx1ADkDEmBfJcI83R5hTJPcXhWGN6lkT8aYbugiZH6pBMWvj7WHZYu32Wd9FOEgIRiVtYAISTJDKs0tNZAiwgrWd3+4V7kR+BzHEmFK7maB3tFCV30Ah4SH3trB7H7coa2sFf211bB8uBQVHZXlH+L7Js9Gyu68nLGcm0igWLPk5BubV4GYo2rzWHPXZN3DWx6+4b+UBd9TipwfMlTY0ScGFk1IaQAIGSux5V4XK52J2fQHcTFNo4khIY4k/AYnO9TqH6TTM=
+  app: gestion-clientes-cc
