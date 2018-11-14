@@ -5,7 +5,7 @@ python:
 install:
 - pip install pipenv
 - pipenv install
-script: python test/testApp.py; python test/testCliente.py; python testGestorClientes.py
+script: python test/testApp.py; python test/testCliente.py; python test/testGestorClientes.py
 deploy:
   provider: heroku
   api_key:
