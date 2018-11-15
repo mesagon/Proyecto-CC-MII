@@ -172,7 +172,7 @@ deploy:
   app: <Nombre de la aplicación creada en Heroku>
 ~~~
 
-Vemos que le indicamos a Travis que el despliegue se realizará en Heroku y le proporcionamos nuestra api_key de Heroku encriptada. En este caso, la api_key se puede encriptar utilizando el siguiente comando del cliente de travis desde la terminal.
+Vemos que le indicamos a Travis que el despliegue se realizará en Heroku y le proporcionamos nuestra api_key de Heroku encriptada. En este caso, la api_key se puede encriptar utilizando el siguiente comando del cliente de Travis desde la terminal.
 
 ~~~
 $ travis encrypt <API_KEY sin encriptar>
