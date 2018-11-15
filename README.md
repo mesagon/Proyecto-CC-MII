@@ -47,3 +47,17 @@ Para el desarrollo de los microservicios se va a usar el microframework web [Fla
 
 ### Página del proyecto
 [Página del proyecto](https://mesagon.github.io/Proyecto-CC-MII/)
+
+## Creación de un microservicio y despliege en Paas
+
+Se ha creado un microservicio encargado de la gestión de clientes, el cual nos va a permitir crear, eliminar, modificicar y consultar clientes.
+
+Para la gestión de los  datos de los clientes, se han creado dos clases que serán utilizadas por la interfaz REST del servicio.
+
+### Estructura del microservicio
+
+El microservicio se compone de los siguientes tres elementos.
+
+* Una clase Cliente (fichero Cliente.py) que nos permitirá realizar la gestión de los datos de un cliente individual. En este caso, un cliente se caracteriza por su nombre, apellidos, mail, fecha de nacimiento y por su dirección. Un objeto de tipo cliente, a parte de tener los atributos anteriores, nos permite consultar y modificar dichos atributos.
+
+* Un clase GestorClientes (fichero GestorClientes.py), la cual, almacena en un diccionario todos los clientes que existan actualmente en el microservicio. Dicho diccionario contiene pares clave-valor donde la clave es el mail del cliente (ya que es único) y el valor es el objeto de la clase Cliente que contine todos los datos de dicho cliente.

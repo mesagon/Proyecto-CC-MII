@@ -25,7 +25,7 @@ def getStatus():
 
         status = {"status": "OK",
                   "ejemplo": { "ruta": "/cliente?mail=ejemplo@gmail.com",
-                              "valor": "{'ejemplo@gmail.com': {'Apellidos': 'Mesa Gonzalez', 'Direccion': 'Calle Paseo Moreras 39', 'Fecha de nacimiento': '29/06/1996', 'Mail': 'ejemplo@gmail.com', 'Nombre': 'Jesus'}}"}}
+                              "valor": {'ejemplo@gmail.com': {'Apellidos': 'Mesa Gonzalez', 'Direccion': 'Calle Paseo Moreras 39', 'Fecha de nacimiento': '29/06/1996', 'Mail': 'ejemplo@gmail.com', 'Nombre': 'Jesus'}}}}
       
         return(jsonify(status))
 
