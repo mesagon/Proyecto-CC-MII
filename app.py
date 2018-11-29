@@ -10,6 +10,7 @@ from flask import Flask, request, abort
 from flask import jsonify, Response
 import json
 import GestorClientes
+import os
 
 # Crear la aplicacion.
 app = Flask(__name__)
