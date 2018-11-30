@@ -83,4 +83,12 @@ Tras crear la MV en Azure se ha aprovisionado con todas las dependencias necesar
 - [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/provisionamientoAnsible.md#instalaci%C3%B3n-de-ansible) a instalación de Ansible en la máquina local.
 - [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/provisionamientoAnsible.md#playbook) a la creación de la receta (playbook) para realizar el provisionamiento.
 
-Por último, el inventario, el fichero de configuración y el playbook creado se encuentran en esta [carpeta](https://github.com/mesagon/Proyecto-CC-MII/tree/master/provision/ansible) de este mismo repositorio.
+Por último, el inventario, el fichero de configuración y el playbook creados se encuentran en esta [carpeta](https://github.com/mesagon/Proyecto-CC-MII/tree/master/provision/ansible) de este mismo repositorio.
+
+Podemos acceder al microservicio a través de la IP de la máquina virtual. Esta dirección es la siguiente.
+
+MV: 137.135.132.77
+
+### Comprobación de provisionamiento de otro alumno
+
+Se ha comprobado el provisionamiento realizado por Antonio Javier Cabrera Gutiérrez. Para ello se han seguido sus instrucciones para montar la MV, las cuales se encuentran en este [enlace](). La comprobacón en detalle se puede encontrar [aquí]().
