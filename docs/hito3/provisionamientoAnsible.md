@@ -99,9 +99,10 @@ El playbook que se ha creado es el siguiente.
        chdir: ~/Proyecto-CC-MII
 
    - name: Desplegar aplicacion.
-     shell: pipenv run gunicorn -D -b 0.0.0.0:80 app:app
+     shell: pipenv run gunicorn --reload -D -b 0.0.0.0:80 app:app
      args:
        chdir: ~/Proyecto-CC-MII
+     
 ~~~
 
 Vemos que el playbook es un documento en formato yml en el cual podemos definir arrays de pares clave/valor. Cada vez que escribimos el signo - indicamos que a continuación viene un array de pares clave/valor. Podemos observar (al principio del playbook) las siguientes tres claves principales.
