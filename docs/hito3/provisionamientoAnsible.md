@@ -61,36 +61,28 @@ El playbook que se ha creado es el siguiente.
 ---
  - hosts: Azure
    user: azureuser
+   become: yes
    tasks:
 
+   - name: Actualizar los repositorios.
+     apt: update_cache=yes upgrade=yes
+
    - name: Instalar python 2.7.
-     become: yes
-     become_user: azureuser
      apt: pkg=python state=present
 
    - name: Instalar python 3.6.
-     become: yes
-     become_user: azureuser
      apt: pkg=python3.6 state=present
 
-   - name: Instalar pip.
-     become: yes
-     become_user: azureuser
-     apt: pkg=python-pip state=present
+   - name: Instalar pip3.
+     apt: pkg=python3-pip state=present
 
    - name: Instalar git.
-     become: yes
-     become_user: azureuser
      apt: pkg=git state=present
 
    - name: Instalar pipenv.
-     become: yes
-     become_user: azureuser
-     pip: name=pipenv
+     shell: pip3 install pipenv
 
    - name: Instalar distutils.
-     become: yes
-     become_user: azureuser
      apt: pkg=python3-distutils state=present
 
    - name: Clonar proyecto.
@@ -107,8 +99,6 @@ El playbook que se ha creado es el siguiente.
        chdir: ~/Proyecto-CC-MII
 
    - name: Desplegar aplicacion.
-     become: yes
-     become_user: azureuser
      shell: pipenv run gunicorn -D -b 0.0.0.0:80 app:app
      args:
        chdir: ~/Proyecto-CC-MII
@@ -118,22 +108,22 @@ Vemos que el playbook es un documento en formato yml en el cual podemos definir 
 
 - hosts: El valor de esta clave es nombre de un host o el nombre del grupo de hosts en el inventario de Ansible, que queremos provisionar. Aquí queremos provisionar la MV de Azure, la cual está dentro del grupo Azure.
 - user: Esta clave indica el usuario con el que debe de acceder Ansible para ejecutar las tareas de este playbook en las MVs.
+- become: Indica si los comandos asociados a las tareas se ejecutan utilizando sudo.
 - tasks: Esta clave tiene como valor el conjunto de tareas que debemos de ejecutar en la o las máquinas virtuales. Cada tarea se compone a su vez de los siguientes elementos:
 
   - name: Clave que indica el nombre descriptivo de la tarea.
-  - become (opcional): Indica si los comandos asociados a la tarea se tienen que ejecutar con sudo.
-  - become_user(opcional): Indica con que usuario con privilegios vamos a ejecutar los comandos asociados a la tarea en la MV.
   - comando: Comando a ejecutar con Ansible. Por ejemplo, apt para instalar paquetes con apt.
 
 En el playbook podemos ver la infraestructura virtual que debemos de utilizar para desplegar el microservicio de gestión de personas. Más en concreto, al ejecutar el playbook, Ansible instalará en la MV de Azure las siguientes dependencias:
 
 - Python 2.7 y python 3.6: La versión 2.7 necesaria para que Ansible pueda trabajar en la MV y la 3.6 es la versión de python necesaria para lanzar el microservicio.
-- Pip: Para poder instalar pipenv.
+- pip3: Para poder instalar pipenv.
 - Pipenv: Para crear el entorno virtual e instalar en él las dependencias del microservicio recogidas en los ficheros Pipfile y Pipfile.lock.
 - git: Para clonar el microservicio del repositorio de GitHub.
 
 A parte de instalar las anteriores dependencias, el playbook también realiza las siguientes tareas en el orden en el que se muestran:
 
+- Actualizar los repositorios y paquetes.
 - Clonar con git el repositorio de GitHub que contiene el microservicio a desplegar.
 - Instalar con pipenv las dependencias del microservicio que se encuentran en Pipfile y Pipfile.lock.
 - Pasar los tests al microservicio.
