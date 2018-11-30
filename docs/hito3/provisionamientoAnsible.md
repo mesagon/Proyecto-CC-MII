@@ -1,7 +1,7 @@
 ## Provisionamiento con Ansible
 
 El provisionamiento de la máquina virtual creada en Azure se realizará mediante el gestor de
-configuraciones Ansible. Se ha elegido esta herrmienta debido a la sencillez que ofrece para
+configuraciones Ansible. Se ha elegido esta herramienta debido a la sencillez que ofrece para
 gestionar el provisionamiento de múltiples máquinas virtuales mediante la centralización de
 en un solo fichero de los parámetros de conexión a cada una de las MVs que queremos provisionar
 (el inventario).
@@ -149,10 +149,10 @@ $ ansible-playbook <nombre_del_playbook>
 
 En este caso hemos obtenido lo siguiente tras ejecutar la orden anterior.
 
-![Imagen no encontrada](/img/provisionamientoExito.png)
+![Imagen no encontrada](docs/hito3/img/provisionamientoExito.png)
 
 Como vemos, cada una de las tareas del provisionamiento se han realizado con éxito, por tanto, nuestro microservicio debería de estar disponible para acceder a el desde el navegador poniendo su dirección IP. De esta forma, si accedemos en un navegador a la dirección http://137.135.132.77 nos aparece lo siguiente.
 
-![Imagen no encontrada](/img/despliegueExito.png)
+![Imagen no encontrada](docs/hito3/img/despliegueExito.png)
 
-Vemos en la imagen como el microservicio se ha desplegado con éxito en la máquina virtual de Azure. 
+Vemos en la imagen como el microservicio se ha desplegado con éxito en la máquina virtual de Azure.
