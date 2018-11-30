@@ -48,12 +48,12 @@ Para el desarrollo de los microservicios se va a usar el microframework web [Fla
 ### Página del proyecto
 [Página del proyecto](https://mesagon.github.io/Proyecto-CC-MII/)
 
-## Creación de un microservicio y despliege en Paas
+## Creación de un microservicio y despliegue en Paas
 
 Se ha creado un microservicio encargado de la gestión de clientes, el cual nos va a permitir crear, eliminar, modificicar y consultar clientes.
 
-Para la gestión de los  datos de los clientes, se han creado dos clases que serán utilizadas por la interfaz REST del servicio. En el siguiente [enlace]() se encuentra una descripción detallada de dichas clases y de sus respectivos tests.
+Para la gestión de los  datos de los clientes, se han creado dos clases que serán utilizadas por la interfaz REST del servicio. En el siguiente [enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito2/estructuraMicroservicio.md#estructura-del-microservicio) se encuentra una descripción detallada de dichas clases y de sus respectivos tests.
 
-Por otra parte, se ha configurado GitHub para que cuando hagamos push se despliegue el microservicio en Heroku despues de haber pasado los tests con Travis-CI. En el siguiente [enlace]() se encuentra una documentación más detallada.
+Por otra parte, se ha configurado GitHub para que cuando hagamos push se despliegue el microservicio en Heroku despues de haber pasado los tests con Travis-CI. En el siguiente [enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito2/despliegueHeroku.md#despliegue-en-heroku) se encuentra una documentación más detallada.
 
 despliegue https://gestion-clientes-cc.herokuapp.com/
