@@ -50,10 +50,37 @@ Para el desarrollo de los microservicios se va a usar el microframework web [Fla
 
 ## Creación de un microservicio y despliegue en Paas
 
-Se ha creado un microservicio encargado de la gestión de clientes, el cual nos va a permitir crear, eliminar, modificicar y consultar clientes.
+Se ha creado un microservicio encargado de la gestión de clientes, el cual nos va a permitir crear, eliminar, modificar y consultar clientes.
 
 Para la gestión de los  datos de los clientes, se han creado dos clases que serán utilizadas por la interfaz REST del servicio. En el siguiente [enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito2/estructuraMicroservicio.md#estructura-del-microservicio) se encuentra una descripción detallada de dichas clases y de sus respectivos tests.
 
-Por otra parte, se ha configurado GitHub para que cuando hagamos push se despliegue el microservicio en Heroku despues de haber pasado los tests con Travis-CI. En el siguiente [enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito2/despliegueHeroku.md#despliegue-en-heroku) se encuentra una documentación más detallada.
+Por otra parte, se ha configurado GitHub para que cuando hagamos push se despliegue el microservicio en Heroku después de haber pasado los tests con Travis-CI. En el siguiente [enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito2/despliegueHeroku.md#despliegue-en-heroku) se encuentra una documentación más detallada.
 
 despliegue https://gestion-clientes-cc.herokuapp.com/
+
+## Provisionamiento de máquinas virtuales
+
+Se ha creado una instancia de una máquina virtual utilizando el portal de Azure siguiendo [este tutorial](https://docs.microsoft.com/es-es/azure/virtual-machines/linux/quick-create-portal?toc=%2Fazure%2Fvirtual-machines%2Flinux%2Ftoc.json). En dicha máquina virtual se ha instalado Ubuntu server 18.04 LTS y se han establecido los recursos (memoria, disco, red, etc) necesarios para poder ejecutar el microservicio de gestión de clientes. La configuración de la MV creada es la siguiente:
+
+- Nombre: GestionPersonas-v2.
+- Región: Norte de Europa.
+- Imagen: Ubuntu Server 18.04 LTS.
+- Tamaño: B1s estándar.
+- Cuenta de administrador:
+  - Usuario: azureuser.
+  - Autenticación: Clave pública SSH.
+- Puertos de entrada públicos: HTTP y SSH.
+- Disco del sistema operativo: HDD estándar.
+- Dirección IP pública: Estática.
+
+En los siguientes enlaces se detalla la configuración anterior de la máquina virtual.
+
+- [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/maquinaVirtual.md#sistema-operativo) a documentación sobre el sistema operativo.
+- [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/maquinaVirtual.md#resto-de-par%C3%A1metros-de-la-mv) a documentación sobre los recursos de la máquina virtual.   
+
+Tras crear la MV en Azure se ha aprovisionado con todas las dependencias necesarias para poder desplegar en ella la aplicación. Para ello, se ha utilizado el gestor de configuración Ansible. Además, también se ha realizado el despliegue de la aplicación junto al provisionamiento de la MV. En los siguientes enlaces accederemos a documentación más detallada del provisionamiento.
+
+- [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/provisionamientoAnsible.md#instalaci%C3%B3n-de-ansible) a instalación de Ansible en la máquina local.
+- [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/provisionamientoAnsible.md#playbook) a la creación de la receta (playbook) para realizar el provisionamiento.
+
+Por último, el inventario, el fichero de configuración y el playbook creado se encuentran en esta [carpeta](https://github.com/mesagon/Proyecto-CC-MII/tree/master/provision/ansible) de este mismo repositorio.
