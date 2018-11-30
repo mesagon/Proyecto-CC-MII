@@ -149,10 +149,10 @@ $ ansible-playbook <nombre_del_playbook>
 
 En este caso hemos obtenido lo siguiente tras ejecutar la orden anterior.
 
-![Imagen no encontrada](docs/hito3/img/provisionamientoExito.png)
+![Imagen no encontrada](img/provisionamientoExito.png)
 
 Como vemos, cada una de las tareas del provisionamiento se han realizado con éxito, por tanto, nuestro microservicio debería de estar disponible para acceder a el desde el navegador poniendo su dirección IP. De esta forma, si accedemos en un navegador a la dirección http://137.135.132.77 nos aparece lo siguiente.
 
-![Imagen no encontrada](docs/hito3/img/despliegueExito.png)
+![Imagen no encontrada](img/despliegueExito.png)
 
 Vemos en la imagen como el microservicio se ha desplegado con éxito en la máquina virtual de Azure.
