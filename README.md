@@ -91,4 +91,8 @@ MV: 137.135.132.77
 
 ### Comprobación de provisionamiento de otro alumno
 
-Se ha comprobado el provisionamiento realizado por Antonio Javier Cabrera Gutiérrez. Para ello se han seguido sus instrucciones para montar la MV, las cuales se encuentran en este [enlace](). La comprobacón en detalle se puede encontrar [aquí]().
+Se ha comprobado el provisionamiento realizado por Antonio Javier Cabrera Gutiérrez. Para ello se han seguido sus instrucciones para montar la MV, las cuales se encuentran en este [enlace](https://github.com/javiercabrera184/ProyectoCC/blob/master/docs/Hito3.md). La comprobacón en detalle se puede encontrar [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/provisionAntonioJavier.md#comprobaci%C3%B3n-del-provisionamiento-de-otro-alumno).
+
+### Comprobación de mi provisionamiento
+
+Mi provisionamiento ha sido comprobado por Antonio Javier Cabrera Gutiérrez [aquí](https://github.com/javiercabrera184/ProyectoCC/blob/master/docs/Hito3.md#comprobacion-compa%C3%B1ero) (Está al final del documento. He puesto el enlace a la sección pero lleva a la mitad del documento).
