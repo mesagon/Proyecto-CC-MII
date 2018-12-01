@@ -10,7 +10,7 @@ Aunque se haya optado por Ubuntu server, también se podría haber optado por ot
 
 ### Resto de parámetros de la MV
 
-Como se dijo al inicio de este documento, se ha creado una MV mediante el portal de Azure. En dicho portal se nos permitía elegir distntos parámetros de la MV. En este caso se han elegido los siguientes.
+Como se dijo al inicio de este documento, se ha creado una MV mediante el portal de Azure. En dicho portal se nos permitía elegir distintos parámetros de la MV. En este caso se han elegido los siguientes.
 
 - Nombre: GestionPersonas-v2 (se crearon otras MV antes de esta).
 - Región: Norte de Europa. Se a tratado de elegir una región cercana para que de este modo la conexión presente menos latencia. No se ha elegido el Oeste de Europa por que daba errores a la hora de la creación de la MV.
