@@ -56,6 +56,7 @@ Para la gestión de los  datos de los clientes, se han creado dos clases que ser
 
 Por otra parte, se ha configurado GitHub para que cuando hagamos push se despliegue el microservicio en Heroku después de haber pasado los tests con Travis-CI. En el siguiente [enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito2/despliegueHeroku.md#despliegue-en-heroku) se encuentra una documentación más detallada.
 
+
 despliegue https://gestion-clientes-cc.herokuapp.com/
 
 ## Provisionamiento de máquinas virtuales
