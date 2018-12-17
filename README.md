@@ -10,31 +10,7 @@ Una aplicación software que permita a la empresa realizar la gestión de sus in
 
 ### Descripción de la arquitectura
 
-La aplicación debe realizar una gestión de los clientes, incidencias y empleados. La empresa quiere llevar a cabo dicha gestión de forma eficiente y escalable. Por ello, se ha realizado un breve estudio de las distintas arquitecturas software de cara a elegir la que nos permita construir una aplicación con los requisitos anteriormente citados. De esta forma, las arquitecturas estudiadas son las siguientes:
-
-- Arquitectura microkernel: Es un tipo de arquitectura monolítica con la que podríamos añadir a la aplicación nuevas funcionalidades mediante plugins. Al ser monolítica esta arquitectura habría muchos problemas a la hora de escalarla ya que tendríamos que replicar la aplicación entera.   
-
-- Arquitectura en capas: Esta arquitectura permite una mayor escalabilidad que una arquitectura monolítica, sin embargo, solo se puede escalar cada capa de forma individual, de forma que la capa con menos escalabilidad y más solicitada causaría un cuello de botella provocando que la escalabilidad de toda la aplicación sea la misma que la de dicha capa.
-
-- Arquitectura dirigida por eventos: Nos permite organizar nuestro sistema en un conjunto de procesadores de eventos independientes. La cantidad de procesadores a utilizar puede ser la que queramos en cada momento, lo que haría a la aplicación bastante escalable. Sin embargo, este tipo de arquitecturas son difíciles de testear y tienen un diseño y desarrollo complicados.
-
-- Arquitectura basada en espacios: Se trata de una arquitectura más antigua que las anteriores que puede funcionar bien para el desarrollo de aplicaciones a pequeña escala pero para aplicaciones más grandes puede ser más complicada de aplicar.
-
-- Arquitectura basada en microservicios: Este tipo de arquitectura consiste en dividir la aplicación en un conjunto de servicios (unidades funcionales) independientes. De esta forma, cada servicio se podría escalar de manera independiente sin necesidad de replicar toda la aplicación como ocurre con las arquitecturas monolíticas. Por otra parte, el servicio menos escalable no puede ser cuello de botella del sistema, puesto que su rendimiento no afecta al resto de servicios al ser estos autónomos e independientes. Por último, cabe destacar que su diseño es más testeable y sencillo que el de una arquitectura basada en eventos, puesto que los errores se localizan y arreglan en servicios independientes y los servicios se testean de manera independiente.
-
-En base a lo comentado anteriormente, se va a elegir una arquitectura basada en microservicios para el desarrollo de la aplicación. Dicha arquitectura constará de los siguientes elementos:
-
-- Servicio de gestión de clientes: Servicio que se encargará de identificar a los clientes y de dar de alta a los no registrados en el sistema. Dispondrá de una base de datos NoSQL con MongoDB que almacenará los datos de los clientes.
-
-- Servicio que gestiona la creación de incidencias por parte de los clientes.
-
-- Servicio que gestiona la resolución de las incidencias por parte de los empleados.
-
-- Servicio de base de datos NoSQL con MongoDB que almacenará los datos de las incidencias.
-
-- Servicio de gestión de empleados: Servicio que gestionará la identificación y el alta de los nuevos empleados en el sistema. Tendrá una base de datos NoSQL con MongoDB para almacenar los datos de los empleados.
-
-- Para la comunicación entre los distintos servicios se utilizará el broker RabbitMQ, el cual permitirá que un determinado servicio que quiere enviar un mensaje a otro servicio, pueda dejarlo en manos de RabbitMQ (que se encargará de enviarlo) y continuar con su tarea. De esta forma tenemos una comunicación por mensajes asíncrona permitiendo que el servicio no tenga que esperar sin hacer nada hasta entregar el mensaje. En concreto, se utilizará RabbitMQ con la biblioteca Pika de Python.
+La aplicación debe realizar una gestión de los clientes, incidencias y empleados. La empresa quiere llevar a cabo dicha gestión de forma eficiente y escalable. Por ello, se ha realizado [aqui](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito1/comparacionArquitecturas.md) un breve estudio de las distintas arquitecturas software de cara a elegir la que nos permita construir una aplicación con los requisitos anteriormente citados.
 
 ### Desarrollo
 
@@ -61,20 +37,7 @@ despliegue https://gestion-clientes-cc.herokuapp.com/
 
 ## Provisionamiento de máquinas virtuales
 
-Se ha creado una instancia de una máquina virtual utilizando el portal de Azure siguiendo [este tutorial](https://docs.microsoft.com/es-es/azure/virtual-machines/linux/quick-create-portal?toc=%2Fazure%2Fvirtual-machines%2Flinux%2Ftoc.json). En dicha máquina virtual se ha instalado Ubuntu server 18.04 LTS y se han establecido los recursos (memoria, disco, red, etc) necesarios para poder ejecutar el microservicio de gestión de clientes. La configuración de la MV creada es la siguiente:
-
-- Nombre: GestionPersonas-v2.
-- Región: Norte de Europa.
-- Imagen: Ubuntu Server 18.04 LTS.
-- Tamaño: B1s estándar.
-- Cuenta de administrador:
-  - Usuario: azureuser.
-  - Autenticación: Clave pública SSH.
-- Puertos de entrada públicos: HTTP y SSH.
-- Disco del sistema operativo: HDD estándar.
-- Dirección IP pública: Estática.
-
-En los siguientes enlaces se detalla la configuración anterior de la máquina virtual.
+Se ha creado una instancia de una máquina virtual utilizando el portal de Azure siguiendo [este tutorial](https://docs.microsoft.com/es-es/azure/virtual-machines/linux/quick-create-portal?toc=%2Fazure%2Fvirtual-machines%2Flinux%2Ftoc.json). En dicha máquina virtual se ha instalado Ubuntu server 18.04 LTS y se han establecido los recursos (memoria, disco, red, etc) necesarios para poder ejecutar el microservicio de gestión de clientes. La configuración de la MV creada se detalla en los siguientes enlaces.
 
 - [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/maquinaVirtual.md#sistema-operativo) a documentación sobre el sistema operativo.
 - [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/maquinaVirtual.md#resto-de-par%C3%A1metros-de-la-mv) a documentación sobre los recursos de la máquina virtual.   
