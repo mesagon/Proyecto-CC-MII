@@ -8,6 +8,7 @@ name = "pypi"
 [packages]
 flask = "*"
 gunicorn = "*"
+json-logging-py = "*"
 
 [requires]
 python_version = "3.6"
