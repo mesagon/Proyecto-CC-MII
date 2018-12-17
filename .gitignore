@@ -114,4 +114,4 @@ dmypy.json
 .pyre/
 
 # Lock
-.lock/
+Pipfile.lock
