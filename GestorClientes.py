@@ -33,108 +33,70 @@ class GestorClientes:
         
             # Introducir en el diccionario el nuevo cliente.
             self.__clientes[mail] = cli
-            
-            return(0)
         
         else:
             
-            # Cliente existe. Devolver -1.
-            return(-1)
+            # Cliente existe. Lanzar excepcion.
+            raise MailYaExiste(mail)
     
     # Eliminar cliente.
     def delCliente(self,mail):
         
         # Si existe el cliente, lo eliminamos, en caso
-        # contrario no se hace nada.
-        if(mail in self.__clientes):
-            
-            del self.__clientes[mail]
+        # contrario lanza excepcion de tipo KeyError.
+        del self.__clientes[mail]
         
-            return(0)
-
-        else:
-            
-            return(-1)
         
     # Obtener cliente.
     def getCliente(self,mail):
 
-        # Si existe el cliente, lo devolvemos, sino devolvemos
-        # -1.
-        if(mail in self.__clientes):
-            
-            return(self.__clientes[mail])
+        # Si existe el cliente, lo devolvemos, sino se
+        # lanza una excepcion KeyError.
+        return(self.__clientes[mail])
         
-        else:
-            
-            return(-1)
-     
     # Modificar nombre cliente.
     def setNombre(self,mail,nombre):
         
         # Si existe el cliente, cambiamos el parametro,
-        # sino no. 
-        if(mail in self.__clientes):
-             
-            self.__clientes[mail].setNombre(nombre)
-             
-            return(0)
-         
-        else:
-            
-            return(-1)
+        # sino lanzamos excepcion KeyError.
+        self.__clientes[mail].setNombre(nombre)
         
     # Modificar apellidos cliente.
     def setApellidos(self,mail,apellidos):
          
         # Si existe el cliente, cambiamos el parametro,
-        # sino no. 
-        if(mail in self.__clientes):
-             
-            self.__clientes[mail].setApellidos(apellidos)
-             
-            return(0)
-         
-        else:
-            
-            return(-1)
+        # sino lanzamos excepcion KeyError.
+        self.__clientes[mail].setApellidos(apellidos)
         
     # Modificar fecha nacimiento.
     def setFechaNacimiento(self,mail,fecha_nacimiento):
          
-        # Si existe el cliente, cambiamos el parametro,
-        # sino no.
-        if(mail in self.__clientes):
-             
-            self.__clientes[mail].setFechaNacimiento(fecha_nacimiento)
-             
-            return(0)
-         
-        else:
-            
-            return(-1)
-        
+        # Si existe el cliente, lo devolvemos, sino se
+        # lanza una excepcion KeyError.
+        self.__clientes[mail].setFechaNacimiento(fecha_nacimiento)
+    
     # Modificar fecha nacimiento.
     def setDireccion(self,mail,direccion):
          
-        # Si existe el cliente, cambiamos el parametro,
-        # sino no.
-        if(mail in self.__clientes):
-             
-            self.__clientes[mail].setDireccion(direccion)
-             
-            return(0)
-         
-        else:
-            
-            return(-1)
+        # Si existe el cliente, lo devolvemos, sino se
+        # lanza una excepcion KeyError.
+        self.__clientes[mail].setDireccion(direccion)
         
     # Obtener todos los clientes.    
     def getClientes(self):
         
         return(self.__clientes)
          
-    
+# Clase para representar la excepcion de que un cliente ya existe.
+class MailYaExiste(Exception):
+
+    def __init__(self,value):
+        
+        self.value = value
+        
+    def __str__(self):
+        
+        return(repr(self.value))
         
         
             

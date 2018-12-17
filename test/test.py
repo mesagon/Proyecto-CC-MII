@@ -90,8 +90,7 @@ class testGestorClientes(unittest.TestCase):
     def testAddGetCliente(self):
         
         # Si añado cliente cuyo correo no existe.
-        resultado = self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
-        self.assertEqual(resultado,0)
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         cliente = self.gestor.getCliente("ejemplo@gmail.com")
@@ -103,8 +102,7 @@ class testGestorClientes(unittest.TestCase):
         self.assertEqual(cliente.getDireccion(),"C:\ Paseo Moreras 39")
         
         # Si añado un cliente cuyo correo ya existe.
-        resultado = self.gestor.addCliente("Pepe","Aguilera Cuenca","ejemplo@gmail.com","8/09/1978","C:\ Guadalquivir 6")
-        self.assertEqual(resultado,-1)
+        self.assertRaises(GestorClientes.MailYaExiste, lambda: self.gestor.addCliente("Pepe","Aguilera Cuenca","ejemplo@gmail.com","8/09/1978","C:\ Guadalquivir 6"))
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Comprobar que el cliente anterior sigue intacto.
@@ -117,38 +115,32 @@ class testGestorClientes(unittest.TestCase):
         self.assertEqual(cliente.getDireccion(),"C:\ Paseo Moreras 39")
         
         # Obtener un cliente que no existe.
-        cliente = self.gestor.getCliente("noexiste@gmail.com")
-        self.assertEqual(cliente,-1)
+        self.assertRaises(KeyError,lambda:self.gestor.getCliente("noexiste@gmail.com"))
         
     # Comprobacion de eliminacion y obtencion de cliente.
     def testDelGetCliente(self):
         
         # Añadimos un cliente.
-        resultado = self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
-        self.assertEqual(resultado,0)
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Eliminamos el cliente.
         resultado = self.gestor.delCliente("ejemplo@gmail.com")
-        self.assertEqual(resultado,0)
         self.assertEqual(len(self.gestor.getClientes()),0)
         
         # Eliminar cliente que no existe.
-        resultado = self.gestor.delCliente("ejemplo@gmail.com")
-        self.assertEqual(resultado,-1)
+        self.assertRaises(KeyError,lambda: self.gestor.delCliente("ejemplo@gmail.com"))
         self.assertEqual(len(self.gestor.getClientes()),0)
         
     # Comprobacion de modificacion de nombre y obtencion de cliente.
     def testSetGetNombre(self):
         
         # Añadimos un cliente.
-        resultado = self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
-        self.assertEqual(resultado,0)
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Modificar su nombre.
-        resultado = self.gestor.setNombre("ejemplo@gmail.com","Pepe")
-        self.assertEqual(resultado,0)
+        self.gestor.setNombre("ejemplo@gmail.com","Pepe")
         cliente = self.gestor.getCliente("ejemplo@gmail.com")
         self.assertEqual(cliente.getNombre(),"Pepe")
         
@@ -156,13 +148,11 @@ class testGestorClientes(unittest.TestCase):
     def testSetGetApellidos(self):
         
         # Añadimos un cliente.
-        resultado = self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
-        self.assertEqual(resultado,0)
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Modificar sus apellidos.
-        resultado = self.gestor.setApellidos("ejemplo@gmail.com","Aguilera Cuenca")
-        self.assertEqual(resultado,0)
+        self.gestor.setApellidos("ejemplo@gmail.com","Aguilera Cuenca")
         cliente = self.gestor.getCliente("ejemplo@gmail.com")
         self.assertEqual(cliente.getApellidos(),"Aguilera Cuenca")
         
@@ -170,13 +160,11 @@ class testGestorClientes(unittest.TestCase):
     def testSetGetFechaNacimiento(self):
         
         # Añadimos un cliente.
-        resultado = self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
-        self.assertEqual(resultado,0)
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Modificar su fecha de nacimiento.
-        resultado = self.gestor.setFechaNacimiento("ejemplo@gmail.com","8/09/1978")
-        self.assertEqual(resultado,0)
+        self.gestor.setFechaNacimiento("ejemplo@gmail.com","8/09/1978")
         cliente = self.gestor.getCliente("ejemplo@gmail.com")
         self.assertEqual(cliente.getFechaNacimiento(),"8/09/1978")
         
@@ -184,13 +172,11 @@ class testGestorClientes(unittest.TestCase):
     def testSetGetDireccion(self):
         
         # Añadimos un cliente.
-        resultado = self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
-        self.assertEqual(resultado,0)
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Modificar su direccion.
-        resultado = self.gestor.setDireccion("ejemplo@gmail.com","C:\ Guadalquivir 6")
-        self.assertEqual(resultado,0)
+        self.gestor.setDireccion("ejemplo@gmail.com","C:\ Guadalquivir 6")
         cliente = self.gestor.getCliente("ejemplo@gmail.com")
         self.assertEqual(cliente.getDireccion(),"C:\ Guadalquivir 6")
 

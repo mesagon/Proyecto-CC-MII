@@ -38,9 +38,9 @@ def getCliente():
     mail = request.args["mail"]
     
     # Obtener el cliente a consultar.
-    cliente = gestor.getCliente(mail)
-    
-    if(cliente != -1):
+    try:
+        
+        cliente = gestor.getCliente(mail)
         
         # Convertir el cliente a diccionario.
         cli = {cliente.getMail():{"nombre":cliente.getNombre(), "apellidos":cliente.getApellidos(), "mail": cliente.getMail(),
@@ -49,13 +49,13 @@ def getCliente():
         # Devolver el cliente como JSON.
         return(jsonify(cli))
 
-    else:
-
+    except KeyError:
+        
         # No existe el cliente.
         respuesta = Response(json.dumps({"mensaje":"El mail del cliente proporcionado no existe", "status":"404"}),status = 404,mimetype='application/json')
 
         return(respuesta)
-
+    
 # Consultar todos los clientes.    
 @app.route("/clientes")
 def getClientes():
@@ -88,14 +88,14 @@ def delCliente():
     
     # Recuperar mail del cliente a eliminar.
     mail = request.args["mail"]
-    resultado = gestor.delCliente(mail)
     
-    if(resultado == 0):
+    try:
         
+        gestor.delCliente(mail)
         res = {"Resultado":"Cliente eliminado con exito"}
-        return(jsonify(res))
-    
-    else:
+        return(jsonify(res))    
+
+    except KeyError:
         
         # No existe el cliente.
         respuesta = Response(json.dumps({"mensaje":"El mail del cliente a borrar no existe", "status":"404"}),status = 404,mimetype='application/json')
@@ -106,16 +106,16 @@ def delCliente():
 @app.route("/aniadir",methods = ["POST"])
 def addCliente():
     
-    resultado = gestor.addCliente(request.args["nombre"],request.args["apellidos"],request.args["mail"],
-                                  request.args["fecha_nacimiento"], request.args["direccion"])
-    
-    if(resultado == 0):
+    try:
+        
+        gestor.addCliente(request.args["nombre"],request.args["apellidos"],request.args["mail"],
+                                      request.args["fecha_nacimiento"], request.args["direccion"])
         
         res = {"Resultado":"Cliente añadido con exito"}
         return(jsonify(res))
     
-    else:
-        
+    except GestorClientes.MailYaExiste as e:    
+
         # Ya existe el cliente.
         respuesta = Response(json.dumps({"mensaje":"El mail del cliente proporcionado ya existe", "status":"405"}),status = 405,mimetype='application/json')
 
@@ -128,14 +128,14 @@ def setNombre():
     mail = request.args["mail"]
     nombre = request.args["nombre"]
     
-    resultado = gestor.setNombre(mail,nombre)
-
-    if(resultado == 0):
+    try:
         
+        gestor.setNombre(mail,nombre)
+    
         res = {"Resultado":"Nombre cambiado con exito"}
         return(jsonify(res))
     
-    else:
+    except KeyError:
         
         # No existe el cliente.
         respuesta = Response(json.dumps({"mensaje":"El mail del cliente proporcionado no existe", "status":"404"}),status = 404,mimetype='application/json')
@@ -149,14 +149,14 @@ def setApellidos():
     mail = request.args["mail"]
     apellidos = request.args["apellidos"]
     
-    resultado = gestor.setApellidos(mail,apellidos)
-
-    if(resultado == 0):
+    try:
         
+        gestor.setApellidos(mail,apellidos)
+    
         res = {"Resultado":"Apellidos cambiados con exito"}
         return(jsonify(res))
     
-    else:
+    except KeyError:
         
         # No existe el cliente.
         respuesta = Response(json.dumps({"mensaje":"El mail del cliente proporcionado no existe", "status":"404"}),status = 404,mimetype='application/json')
@@ -170,14 +170,14 @@ def setFechaNacimiento():
     mail = request.args["mail"]
     fecha_nacimiento = request.args["fecha_nacimiento"]
     
-    resultado = gestor.setFechaNacimiento(mail,fecha_nacimiento)
+    try:
 
-    if(resultado == 0):
-        
+        gestor.setFechaNacimiento(mail,fecha_nacimiento)
+
         res = {"Resultado":"Fecha de nacimiento cambiada con exito"}
         return(jsonify(res))
     
-    else:
+    except KeyError:
         
         # No existe el cliente.
         respuesta = Response(json.dumps({"mensaje":"El mail del cliente proporcionado no existe", "status":"404"}),status = 404,mimetype='application/json')
@@ -191,14 +191,14 @@ def setDireccion():
     mail = request.args["mail"]
     direccion = request.args["direccion"]
     
-    resultado = gestor.setDireccion(mail,direccion)
-
-    if(resultado == 0):
+    try:
         
+        gestor.setDireccion(mail,direccion)
+    
         res = {"Resultado":"Direccion cambiada con exito"}
         return(jsonify(res))
     
-    else:
+    except KeyError:
         
         # No existe el cliente.
         respuesta = Response(json.dumps({"mensaje":"El mail del cliente proporcionado no existe", "status":"404"}),status = 404,mimetype='application/json')
