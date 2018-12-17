@@ -9,6 +9,7 @@ name = "pypi"
 flask = "*"
 gunicorn = "*"
 json-logging-py = "*"
+"python3-logstash" = "*"
 
 [requires]
 python_version = "3.6"
