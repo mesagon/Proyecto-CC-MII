@@ -60,3 +60,13 @@ Se ha comprobado el provisionamiento realizado por Antonio Javier Cabrera Gutié
 ### Comprobación de mi provisionamiento
 
 Mi provisionamiento ha sido comprobado por Antonio Javier Cabrera Gutiérrez [aquí](https://github.com/javiercabrera184/ProyectoCC/blob/master/docs/Hito3.md#comprobacion-compa%C3%B1ero) (Está al final del documento. He puesto el enlace a la sección pero lleva a la mitad del documento).
+
+## Automatización de la creación de máquinas virtuales desde línea de órdenes
+
+Se ha añadido gestión de logs mediante logstash [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/gestionLogs.md#gesti%C3%B3n-de-logs-con-logstash) y se ha modificado el microservicio de gestión de personas para manejar los errores mediante excepciones.
+
+Además, se ha creado un script que utiliza las órdenes del CLI de Azure para automatizar la creación de una MV en Azure en la cual se ha desplegado el microservicio de gestión de clientes. Para ello se han seguido los siguientes pasos:
+
+- Se ha elegido la imagen a instalar en la MV. Más detalles [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/eleccionSo.md#elecci%C3%B3n-de-la-imagen).
+- Se ha elegido el centro de datos en el que alojar la MV. Más detalles [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/eleccionCentroDatos.md#elecci%C3%B3n-del-centro-de-datos).
+- Se ha creado el script y la MV con los recursos necesarios para poder lanzar el microservicio de gestión de clientes. Además, se ha provisionado la MV con Ansible y se ha desplegado el microservicio.  Más detalles [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/automatizacionMV.md#automatizaci%C3%B3n-de-la-creaci%C3%B3n-de-una-m%C3%A1quina-virtual).
