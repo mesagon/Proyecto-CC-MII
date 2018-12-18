@@ -1,0 +1,31 @@
+---
+ - hosts: Mv-FreeBSD
+   user: azureuser
+   become: yes
+   tasks:
+
+   - name: Instalar python 2.7.
+     pkgng: name=python state=present
+
+   - name: Instalar python 3.6.
+     pkgng: name=python36 state=present 
+
+   - name: Instalar pip3.
+     pkgng: name=py36-pip state=present
+
+   - name: Instalar git.
+     pkgng: name=git state=present
+
+   - name: Instalar pipenv.
+     shell: pip-3.6 install pipenv
+
+   - name: Instalar distutils.
+     pkgng: pkg=py36-stsci.distutils state=present
+
+   - name: Clonar proyecto.
+     git: repo=https://github.com/mesagon/Proyecto-CC-MII.git dest=~/Proyecto-CC-MII force=yes
+
+   - name: Establecer entorno virtual.
+     shell: export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && pipenv install
+     args:
+       chdir: ~/Proyecto-CC-MII
