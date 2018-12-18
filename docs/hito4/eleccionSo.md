@@ -41,7 +41,7 @@ Dicho esto, se han elegido las siguientes imágenes:
 
 ### Características de las máquinas virtuales
 
-Para que la comparación sea justa, vamos a crear 4 MVs idénticas con las características necesarias para desplegar nuestra aplicación. Esta características se pueden consultar en el documento sobre [automatización de la creación de una máquina virtual](). Además, todas las MVs pertenecerán al mismo grupo de recursos, el cual esta situado en el norte de Europa (más tarde se elegirá el centro de datos).
+Para que la comparación sea justa, vamos a crear 4 MVs idénticas con las características necesarias para desplegar nuestra aplicación. Esta características se pueden consultar en el documento sobre [automatización de la creación de una máquina virtual](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/automatizacionMV.md#creaci%C3%B3n-de-la-mv). Además, todas las MVs pertenecerán al mismo grupo de recursos, el cual esta situado en el norte de Europa (más tarde se elegirá el centro de datos).
 
 ### Experimentación
 
@@ -77,4 +77,4 @@ Vemos en la tabla que el rendimiento de las 4 imágenes bajo las mismas condicio
 
 Hay que tener en cuenta que midiendo el número de peticiones por segundo y el tiempo de resolución de una petición, no solo medimos el rendimiento de una MV con una determinada imagen, sino que también medimos la latencia (tiempo de respuesta del servidor). Estos dos factores son de vital importancia para una aplicación que va a ser desplegada en la nube.
 
-Por último, cabe destacar que para poder desplegar la aplicación en las 4 MVs se han creado 4 playbooks de Ansible para provisionarlas. Estos se encuentran [aquí]().
+Por último, cabe destacar que para poder desplegar la aplicación en las 4 MVs se han creado 4 playbooks de Ansible para provisionarlas. Estos se encuentran [aquí](https://github.com/mesagon/Proyecto-CC-MII/tree/master/provision/ansible).
