@@ -1,5 +1,5 @@
 ---
- - hosts: Azure
+ - hosts: GestionPersonas-v2
    user: azureuser
    become: yes
    tasks:
