@@ -1,0 +1,39 @@
+---
+ - hosts: Mv-CentOS
+   user: azureuser
+   become: yes
+   tasks:
+
+   - name: Añadir repositorio para instalar python 3.6 y pip3.
+     yum: name=https://centos7.iuscommunity.org/ius-release.rpm state=present
+ 
+   - name: Instalar python 2.7.
+     yum: name=python state=present
+   
+   - name: Instalar python 3.6.
+     yum: 
+       name: "{{packages}}" 
+       state: present
+       update_cache: yes
+     vars:
+       packages:
+        - python36u
+        - python36u-libs
+        - python36u-devel
+          
+   - name: Instalar pip3.
+     yum: name=python36u-pip state=present
+
+   - name: Instalar git.
+     yum: name=git state=present
+
+   - name: Instalar pipenv.
+     shell: pip3.6 install pipenv
+
+   - name: Clonar proyecto.
+     git: repo=https://github.com/mesagon/Proyecto-CC-MII.git dest=~/Proyecto-CC-MII force=yes
+
+   - name: Establecer entorno virtual.
+     shell: pipenv install
+     args:
+       chdir: ~/Proyecto-CC-MII
