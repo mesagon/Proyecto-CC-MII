@@ -42,7 +42,7 @@ Se ha creado una instancia de una máquina virtual utilizando el portal de Azure
 - [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/maquinaVirtual.md#sistema-operativo) a documentación sobre el sistema operativo.
 - [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/maquinaVirtual.md#resto-de-par%C3%A1metros-de-la-mv) a documentación sobre los recursos de la máquina virtual.   
 
-Tras crear la MV en Azure se ha aprovisionado con todas las dependencias necesarias para poder desplegar en ella la aplicación. Para ello, se ha utilizado el gestor de configuración Ansible. Además, también se ha realizado el despliegue de la aplicación junto al provisionamiento de la MV. En los siguientes enlaces accederemos a documentación más detallada del provisionamiento.
+Tras crear la MV en Azure se ha aprovisionado con todas las dependencias necesarias para poder desplegar en ella la aplicación. Para ello, se ha utilizado el gestor de configuración Ansible. Además, también se ha realizado el despliegue de la aplicación junto al provisionamiento de la MV. En los siguientes enlaces accederemos a documentación más detallada del aprovisionamiento.
 
 - [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/provisionamientoAnsible.md#instalaci%C3%B3n-de-ansible) a instalación de Ansible en la máquina local.
 - [Enlace](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito3/provisionamientoAnsible.md#playbook) a la creación de la receta (playbook) para realizar el provisionamiento.
