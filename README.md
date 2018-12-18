@@ -70,3 +70,5 @@ Además, se ha creado un script que utiliza las órdenes del CLI de Azure para a
 - Se ha elegido la imagen a instalar en la MV. Más detalles [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/eleccionSo.md#elecci%C3%B3n-de-la-imagen).
 - Se ha elegido el centro de datos en el que alojar la MV. Más detalles [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/eleccionCentroDatos.md#elecci%C3%B3n-del-centro-de-datos).
 - Se ha creado el script y la MV con los recursos necesarios para poder lanzar el microservicio de gestión de clientes. Además, se ha provisionado la MV con Ansible y se ha desplegado el microservicio.  Más detalles [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/automatizacionMV.md#automatizaci%C3%B3n-de-la-creaci%C3%B3n-de-una-m%C3%A1quina-virtual).
+
+MV2: 40.89.155.215
