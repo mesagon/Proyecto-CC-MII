@@ -36,7 +36,7 @@ $ az login
 
 ### Creación de la MV
 
-En primer lugar debemos crear un grupo de recursos para alojar la MV. Como se dijo en la [elección del centro de datos](), el grupo de recursos debe de estar situado en Francia Central. Esto lo hacemos con el siguiente comando.
+En primer lugar debemos crear un grupo de recursos para alojar la MV. Como se dijo en la [elección del centro de datos](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/eleccionCentroDatos.md#elecci%C3%B3n-del-centro-de-datos), el grupo de recursos debe de estar situado en Francia Central. Esto lo hacemos con el siguiente comando.
 
 ~~~
 $ az group create --location francecentral --name Hito4-Francia-Central  
@@ -57,7 +57,7 @@ Vemos que utilizamos el comando $ az vm create para crear la MV junto a bastante
 
 - resource-group: Indica el grupo de recursos donde alojar la MV. En este caso, la alojamos en el grupo de recursos Hito4-Francia-Central anteriormente creado.
 - name: Es el nombre con el que identificaremos a la MV.
-- image: Imagen a instalar en la MV identificado por su urn (también puede ser por su alias). Hemos utilizado la imagen de Debian 9 elegida en base a lo comentado en la [elección del SO]().
+- image: Imagen a instalar en la MV identificado por su urn (también puede ser por su alias). Hemos utilizado la imagen de Debian 9 elegida en base a lo comentado en la [elección del SO](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/eleccionSo.md#elecci%C3%B3n-de-la-imagen).
 - admin-username: Es el nombre del usuario con derechos de administrador de la MV. En este caso será azureuser.
 - ssh-key-value: En este parámetro indicamos la ruta a nuestra clave pública en nuestro ordenador. Esto lo hacemos para que Azure cree la MV y copie dicha clave pública en ella en el directorio correspondiente del usuario con derechos de administrador. Así, podremos acceder mediante ssh a la MV identificados como azureuser.
 - size: Indica el tamaño de nuestra MV en Azure. En este caso hemos elegido el tamaño Basic_A1 el cual nos proporciona 1 CPU, 1,75 GB de RAM y 2 discos de datos. Se ha elegido este tamaño debido a que es el mínimo tamaño que necesitamos para desplegar nuestra aplicación. Se quería elegir en principio el tamaño Basic_A0 (el más básico) paro solo nos porporciona 1 GB de RAM, lo cual no nos basta ya que logstash consume más memoria principal (al menos en Debian 9).
@@ -111,7 +111,7 @@ Por último, tras abrir el puerto 80, se no mostrará un mensaje JSON bastante g
 
 ![imagen no encontrada](img/puerto.png)
 
-Una vez ejecutado el script, tenemos la MV creada, ejecutándose y lista para provisionarla. Para ello ejecutamos nuestro [playbook de provisionamiento para Debian]() obteniendo lo siguiente.
+Una vez ejecutado el script, tenemos la MV creada, ejecutándose y lista para provisionarla. Para ello ejecutamos nuestro [playbook de provisionamiento para Debian](https://github.com/mesagon/Proyecto-CC-MII/blob/master/provision/ansible/playbook-Debian.yml) obteniendo lo siguiente.
 
 ![imagen no encontrada](img/provision.png)
 
