@@ -1,4 +1,4 @@
-## Elección del sistema operativo
+## Elección de la imagen
 
 Lo primero que tenemos que hacer para crear la instancia de la MV en la nube es decidir que imagen vamos a instalar en ella. Para ello, vamos a comparar el rendimiento de cuatro imágenes con sistemas operativos distintos. Para elegir estas imágenes debemos decidir:
 
