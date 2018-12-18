@@ -85,4 +85,4 @@ Logstash tiene tres partes principales:
 
 Con esto, tenemos una gestión básica de logs del microservicio de gestión de personas mediante logstash. Más adelante, cuando se añadan más microservicios se deberá configurar logstash para gestionar de forma centralizada los logs de los diferentes microservicios.
 
-Por último, para instalar logstash se han añadido al [playbook]() de Ansible tareas para instalar la jdk 1.8 de java (logstash se ejecuta sobre una jvm) y el propio logstash.     
+Por último, para instalar logstash se han añadido al [playbook](https://github.com/mesagon/Proyecto-CC-MII/blob/master/provision/ansible/playbook-Debian.yml) de Ansible tareas para instalar la jdk 1.8 de java (logstash se ejecuta sobre una jvm) y el propio logstash.     
