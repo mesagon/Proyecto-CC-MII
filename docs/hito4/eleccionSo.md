@@ -67,7 +67,7 @@ Además de ejecutar ab sobre cada MV, también compararemos la eficiencia de las
 De acuerdo a lo dicho hasta ahora, se obtiene la siguiente tabla de resultados.
 
 | Sistema operativo   | T. Ejecución (s) | Peticiones/s | Tiempo/petición (ms) |
-|----------|--------------- |---------|
+|----------|--------------- |---------| ---------- |
 | Debian | 0,111 | 100,86 | 9,91 |
 | FreeBSD | 0,160 | 96,20 | 10,40 |
 | CentOS | 0,153 | 97,78 | 10,23 |
