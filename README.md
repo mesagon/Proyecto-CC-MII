@@ -51,7 +51,7 @@ Por último, el inventario, el fichero de configuración y el playbook creados s
 
 Podemos acceder al microservicio a través de la IP de la máquina virtual. Esta dirección es la siguiente.
 
-MV: 137.135.132.77
+MV: 40.69.21.238
 
 ### Comprobación de provisionamiento de otro alumno
 
