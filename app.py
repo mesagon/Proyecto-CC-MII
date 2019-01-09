@@ -11,14 +11,24 @@ from flask import jsonify, Response
 import json
 import GestorClientes
 import os
+from flask_login import LoginManager
+from flask_login import current_user, login_user
+from flask_login import logout_user
+from flask_login import login_required
 
 # Crear la aplicacion.
 app = Flask(__name__)
 
+# Establecer la clave secreta a partir de la cual se generarán
+app.secret_key = os.urandom(16)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 gestor = GestorClientes.GestorClientes()
 
 # Añadir un cliente de prueba.
-gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","Calle Paseo Moreras 39")
+gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","Calle Paseo Moreras 39", "1234")
 
 
 @app.route("/")
@@ -109,7 +119,7 @@ def addCliente():
     try:
         
         gestor.addCliente(request.args["nombre"],request.args["apellidos"],request.args["mail"],
-                                      request.args["fecha_nacimiento"], request.args["direccion"])
+                                      request.args["fecha_nacimiento"], request.args["direccion"], request.args["contrasenia"])
         
         res = {"Resultado":"Cliente añadido con exito"}
         return(jsonify(res))
@@ -122,7 +132,7 @@ def addCliente():
         return(respuesta)
 
 # Modificar nombre cliente.
-@app.route("/setNombre",methods = ["PUT"])    
+@app.route("/setNombre",methods = ["PUT"])
 def setNombre():
 
     mail = request.args["mail"]
@@ -143,7 +153,7 @@ def setNombre():
         return(respuesta)
     
 # Modificar los apellidos del cliente.
-@app.route("/setApellidos",methods = ["PUT"])    
+@app.route("/setApellidos",methods = ["PUT"])
 def setApellidos():
 
     mail = request.args["mail"]
@@ -164,7 +174,7 @@ def setApellidos():
         return(respuesta)
     
 # Modificar fecha de nacimiento del cliente.
-@app.route("/setFechaNacimiento",methods = ["PUT"])    
+@app.route("/setFechaNacimiento",methods = ["PUT"])
 def setFechaNacimiento():
 
     mail = request.args["mail"]
@@ -185,7 +195,7 @@ def setFechaNacimiento():
         return(respuesta)
     
 # Modificar direccion del cliente.
-@app.route("/setDireccion",methods = ["PUT"])    
+@app.route("/setDireccion",methods = ["PUT"])
 def setDireccion():
 
     mail = request.args["mail"]
@@ -204,8 +214,100 @@ def setDireccion():
         respuesta = Response(json.dumps({"mensaje":"El mail del cliente proporcionado no existe", "status":"404"}),status = 404,mimetype='application/json')
 
         return(respuesta)
+        
+# Modificar contraeña del cliente.
+@app.route("/contrasenia",methods = ["PUT"])
+def setContrasenia():
+
+    mail = request.args["mail"]
+    contrasenia = request.args["password"]
+    
+    try:
+        
+        gestor.setContrasenia(mail,contrasenia)
+    
+        res = {"Resultado":"Direccion cambiada con exito"}
+        return(jsonify(res))
+    
+    except KeyError:
+        
+        # No existe el cliente.
+        respuesta = Response(json.dumps({"mensaje":"El mail del cliente proporcionado no existe", "status":"404"}),status = 404,mimetype='application/json')
+
+        return(respuesta)        
+
+# Ruta para iniciar sesión.
+@app.route('/login', methods=["POST"])
+def login():
+    
+    email = request.args["mail"]
+    
+    try:
+        
+        if gestor.getCliente(email).checkContrasenia(request.args["contrasenia"]):
+        
+            cliente = GestorClientes.Cliente.Cliente()
+            cliente.id = email
+            login_user(cliente)
+        
+            res = {"Resultado":"Sesión iniciada con éxito"}
+            respuesta = Response(json.dumps(res),status = 200,mimetype='application/json')
+         
+            return(respuesta)
+    
+    except KeyError:
+        
+         respuesta = Response(json.dumps({"mensaje":"Email incorrecto", "status":"401"}),status = 401,mimetype='application/json')
+         return(respuesta)
+         
+    respuesta = Response(json.dumps({"mensaje":"Contraseña incorrecta", "status":"404"}),status = 404,mimetype='application/json')
+    return(respuesta)
+
+# Ruta para cerrar la sesión del usuario actual.
+@app.route('/logout')
+def logout():
+
+    logout_user()
+    res = {"Resultado":"Sesión cerrada"}
+
+    return(jsonify(res))
+    
+# Definir el cargador de cliente    
+@login_manager.user_loader
+def load_cliente(email):
+
+    if(email not in gestor.getClientes()):
+        
+        return
+    
+    cliente =  GestorClientes.Cliente.Cliente()
+    cliente.id = email
+     
+    return cliente
+ 
+# Definir el cargador de petición que se encargará de decidir
+# si un determinado usuario está identificado o no.    
+@login_manager.request_loader
+def request_loader(request):
+
+    # Encontrar el mail en la petición.
+    email = request.args['mail']
+    
+    # Si el mail no existe, no hacer nada.
+    if email not in gestor.getClientes():
+        
+        return
+
+    # Si el mail existe comprobamos si el cliente está atuenticado y
+    # establecemos su estado de autenticación..
+    cliente = GestorClientes.Cliente.Cliente()
+    cliente.id = email
+
+    cliente.is_authenticated = gestor.getClientes()[email].checkContrasenia(request.args["contrasenia"])
+
+    return cliente
 
 if __name__ == "__main__":
     
     # Lanzar aplicacion.
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=5000)
