@@ -80,4 +80,5 @@ class Cliente(UserMixin):
     def checkContrasenia(self,contrasenia):
         
         return(check_password_hash(self.hash_contrasenia,contrasenia))
+
     
