@@ -5,9 +5,13 @@ Created on Tue Nov 13 18:37:46 2018
 
 @author: jesus
 """
-class Cliente:
+
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+
+class Cliente(UserMixin):
     
-    # Constructor vacio. Crea a una persona con sus datos vacios.
+    # Constructor vacio. Crea un cliente con sus datos vacios.
     def __init__(self):
 
         self.__nombre = " "
@@ -15,6 +19,7 @@ class Cliente:
         self.__mail = " "
         self.__fecha_nacimiento = " "
         self.__direccion = " "
+        self.hash_contrasenia = " "
      
     # Obtener nombre.
     def getNombre(self):
@@ -66,8 +71,13 @@ class Cliente:
         
         self.__direccion = direccion
         
+    # Establecer hash de contraseña.
+    def setContrasenia(self,contrasenia):
         
-    
-       
-    
+        self.hash_contrasenia = generate_password_hash(contrasenia)
+        
+    # Revisar si una contraseña coincide con el hash de la contraseña del usuario.
+    def checkContrasenia(self,contrasenia):
+        
+        return(check_password_hash(self.hash_contrasenia,contrasenia))
     
