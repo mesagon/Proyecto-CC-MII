@@ -72,6 +72,13 @@ class testCliente(unittest.TestCase):
         self.cliente.setDireccion("C:\ Paseo Moreras 39")
         self.assertEqual(self.cliente.getDireccion(),"C:\ Paseo Moreras 39")
         self.assertTrue(isinstance(self.cliente.getDireccion(),str))
+        
+    # Comprobar set y check de contraseña.
+    def testSetCheckContrasenia(self):
+        
+        self.cliente.setContrasenia("1234")
+        self.assertTrue(self.cliente.checkContrasenia("1234"))
+        self.assertTrue(not self.cliente.checkContrasenia("12345"))
 
 class testGestorClientes(unittest.TestCase):
     
@@ -90,7 +97,7 @@ class testGestorClientes(unittest.TestCase):
     def testAddGetCliente(self):
         
         # Si añado cliente cuyo correo no existe.
-        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39","1234")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         cliente = self.gestor.getCliente("ejemplo@gmail.com")
@@ -102,7 +109,7 @@ class testGestorClientes(unittest.TestCase):
         self.assertEqual(cliente.getDireccion(),"C:\ Paseo Moreras 39")
         
         # Si añado un cliente cuyo correo ya existe.
-        self.assertRaises(GestorClientes.MailYaExiste, lambda: self.gestor.addCliente("Pepe","Aguilera Cuenca","ejemplo@gmail.com","8/09/1978","C:\ Guadalquivir 6"))
+        self.assertRaises(GestorClientes.MailYaExiste, lambda: self.gestor.addCliente("Pepe","Aguilera Cuenca","ejemplo@gmail.com","8/09/1978","C:\ Guadalquivir 6", "1234"))
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Comprobar que el cliente anterior sigue intacto.
@@ -121,7 +128,7 @@ class testGestorClientes(unittest.TestCase):
     def testDelGetCliente(self):
         
         # Añadimos un cliente.
-        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39", "1234")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Eliminamos el cliente.
@@ -136,7 +143,7 @@ class testGestorClientes(unittest.TestCase):
     def testSetGetNombre(self):
         
         # Añadimos un cliente.
-        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39", "1234")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Modificar su nombre.
@@ -148,7 +155,7 @@ class testGestorClientes(unittest.TestCase):
     def testSetGetApellidos(self):
         
         # Añadimos un cliente.
-        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39","1234")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Modificar sus apellidos.
@@ -160,7 +167,7 @@ class testGestorClientes(unittest.TestCase):
     def testSetGetFechaNacimiento(self):
         
         # Añadimos un cliente.
-        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39", "1234")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Modificar su fecha de nacimiento.
@@ -172,7 +179,7 @@ class testGestorClientes(unittest.TestCase):
     def testSetGetDireccion(self):
         
         # Añadimos un cliente.
-        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39")
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39", "1234")
         self.assertEqual(len(self.gestor.getClientes()),1)
         
         # Modificar su direccion.
@@ -180,6 +187,18 @@ class testGestorClientes(unittest.TestCase):
         cliente = self.gestor.getCliente("ejemplo@gmail.com")
         self.assertEqual(cliente.getDireccion(),"C:\ Guadalquivir 6")
 
+    # Comprobacion de modificacion de contrasenia y obtencion de cliente.
+    def testSetGetDireccion(self):
+        
+        # Añadimos un cliente.
+        self.gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com","29/06/1996","C:\ Paseo Moreras 39", "1234")
+        self.assertEqual(len(self.gestor.getClientes()),1)
+        
+        # Modificar su contrasenia.
+        self.gestor.setContrasenia("ejemplo@gmail.com","12345")
+        cliente = self.gestor.getCliente("ejemplo@gmail.com")
+        self.assertTrue(cliente.checkContrasenia("12345"))
+        
 class testApp(unittest.TestCase):
     
     # Activamos bandera de test y creamos el cliente
@@ -208,7 +227,7 @@ class testApp(unittest.TestCase):
         with app.app.app_context():
             
             # Añadir un cliente.
-            resultado_post = self.app.post("/aniadir?nombre=Pepe&apellidos=Aguilera&mail=pepe@gmail.com&fecha_nacimiento=28/08/1998&direccion=Calle")
+            resultado_post = self.app.post("/aniadir?nombre=Pepe&apellidos=Aguilera&mail=pepe@gmail.com&fecha_nacimiento=28/08/1998&direccion=Calle&contrasenia=1234")
             self.assertEqual(resultado_post.mimetype,"application/json")
             self.assertEqual(resultado_post.status,"200 OK")
             
@@ -264,7 +283,7 @@ class testApp(unittest.TestCase):
     def testSetApellidos(self):
         
         with app.app.app_context():
-            
+               
             # Cambiar los apellidos de un cliente.
             resultado = self.app.put("/setApellidos?mail=pepe@gmail.com&apellidos=Cuenca")
             self.assertEqual(resultado.mimetype,"application/json")
@@ -304,7 +323,17 @@ class testApp(unittest.TestCase):
             resultado = self.app.get("/cliente?mail=pepe@gmail.com")
             resultado_json = json.loads(resultado.data.decode("ascii"))
             self.assertEqual(resultado_json["pepe@gmail.com"]["direccion"],"CalleFalsa123")
-
+            
+    # Testear cambio de contraseña.         
+    def testCheckContrasenia(self):
+        
+        with app.app.app_context():
+            
+            # Cambiar la contraseña de un cliente.
+            resultado = self.app.put("/contrasenia?mail=ejemplo@gmail.com&password=12345")
+            self.assertEqual(resultado.mimetype,"application/json")
+            self.assertEqual(resultado.status,"200 OK")
+            
 if __name__ == "__main__":
 
     unittest.main()
