@@ -8,7 +8,7 @@ Created on Wed Nov 14 08:46:24 2018
 
 import Cliente
 
-class GestorClientes:
+class GestorClientes():
     
     # Constructor.
     def __init__(self):
@@ -17,7 +17,7 @@ class GestorClientes:
         self.__clientes = {}
         
     # Metodo para añadir un cliente.    
-    def addCliente(self,nombre,apellidos,mail,fecha_nacimiento,direccion):
+    def addCliente(self,nombre,apellidos,mail,fecha_nacimiento,direccion, contrasenia):
         
         # Comprobar si el mail ya existe.
         if(mail not in self.__clientes):
@@ -30,7 +30,8 @@ class GestorClientes:
             cli.setMail(mail)
             cli.setFechaNacimiento(fecha_nacimiento)
             cli.setDireccion(direccion)
-        
+            cli.setContrasenia(contrasenia)
+            
             # Introducir en el diccionario el nuevo cliente.
             self.__clientes[mail] = cli
         
@@ -82,11 +83,18 @@ class GestorClientes:
         # lanza una excepcion KeyError.
         self.__clientes[mail].setDireccion(direccion)
         
+    # Modificar contrasenia.
+    def setContrasenia(self,mail,contrasenia):
+         
+        # Si existe el cliente, lo devolvemos, sino se
+        # lanza una excepcion KeyError.
+        self.__clientes[mail].setContrasenia(contrasenia)    
+        
     # Obtener todos los clientes.    
     def getClientes(self):
         
         return(self.__clientes)
-         
+        
 # Clase para representar la excepcion de que un cliente ya existe.
 class MailYaExiste(Exception):
 
