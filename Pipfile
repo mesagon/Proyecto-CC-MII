@@ -10,6 +10,7 @@ flask = "*"
 gunicorn = "*"
 json-logging-py = "*"
 "python3-logstash" = "*"
+flask-login = "*"
 
 [requires]
 python_version = "3.6"
