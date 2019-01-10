@@ -40,7 +40,7 @@ Para crear la máquina virtual con Debian 9 en Azure utilizando Vagrant se ha cr
 
 En este caso, se ha seguido [este tutorial](https://blog.scottlowe.org/2017/12/11/using-vagrant-with-azure/) para crear el Vagrantfile. Dicho esto, vamos a ver poco a poco cada uno de sus elementos viendo también de esta forma los parámetros de la MV y de su provisionamiento.
 
-En primer lugar, el Vagrantfile debe importar el plugin "vagrant-azure" que permitirá a Vagrant trabajar con Azure como proveedor para crear MVs. Esto se hace conf
+En primer lugar, el Vagrantfile debe importar el plugin "vagrant-azure" que permitirá a Vagrant trabajar con Azure como proveedor para crear MVs. Esto se hace con
 
 ~~~
 require 'vagrant-azure'
@@ -56,7 +56,7 @@ Vagrant.configure('2') do |config|
   config.ssh.private_key_path = '~/.ssh/id_rsa'
 ~~~
 
-Vemos como en primer lugar indicamos que la caja a utilizar para la máquina virtual es la caja 'azure-dummy' añadida y explicada en la sección inicial de este mismo documento. Tras esto, indicamos a Vagrant la ruta hacia nuestra clave privada la cual utilizará Vagrant para poder conectarnos mediante ssh en la MV.
+Vemos como en primer lugar establecemos la versión del API de Vagrant a utilizar, que en este caso es la 2, tras esto, indicamos que la caja a utilizar para la máquina virtual es la caja 'azure-dummy' añadida a nuestro sistema y explicada en la sección inicial de este mismo documento. Tras esto, indicamos a Vagrant la ruta hacia nuestra clave privada la cual utilizará Vagrant para poder conectarnos mediante ssh en la MV.
 
 A continuación, pasamos a configurar el proveedor de Azure para Vagrant para crear la MV con las siguientes líneas.
 
@@ -69,7 +69,7 @@ config.vm.provider 'azure' do |az, override|
     az.subscription_id = ENV['AZURE_SUBSCRIPTION_ID']
 ~~~
 
-Si nos fijamos, en primer lugar establecemos cuatro parámetros del proveedor de Azure los cuales son tenant_id, client_id, client_secret y subscription_id. Estos son los parámetros del service principal que debe de utilizar Vagrant para poder conectarse a nuestra cuenta de Azure para poder crear recursos en ella. Cada uno de estos parámetros se compone con el valor de una de las claves del fichero JSON obtenido tras la creación de service principal. Este fichero JSON ya se comentó al inicio de este documento. Dicha correspondencia es la siguiente.
+Si nos fijamos, en primer lugar indicamos que vamos a utilizar el proveedor de Azure para crear la MV (config.vm.provider "azure"), después de esto establecemos cuatro parámetros del proveedor de Azure los cuales son tenant_id, client_id, client_secret y subscription_id. Estos son los parámetros del service principal que debe de utilizar Vagrant para poder conectarse a nuestra cuenta de Azure para poder crear recursos en ella. Cada uno de estos parámetros se compone con el valor de una de las claves del fichero JSON obtenido tras la creación de service principal. Este fichero JSON ya se comentó al inicio de este documento. Dicha correspondencia es la siguiente.
 
 - tenant_id: Se corresponde con el valor de la clave "tenant" del fichero JSON.
 - client_id: Se corresponde con el valor de la clave "client_id" del fichero JSON.
@@ -225,3 +225,5 @@ Tras esto, si accedemos en el navegador a la dirección IP de la MV creada (cons
 ![imagen no encontrada](img/despliegue.png)
 
 En la imagen vemos que al acceder a la IP de la MV desde el navegador, accedemos a la ruta / del microservicio, el cual nos devuelve un JSON que contiene el par clave-valor status:"OK", confirmando que el microservicio se ha desplegado correctamente.
+
+Despliegue Vagrant: 52.143.183.234

@@ -72,3 +72,18 @@ Además, se ha creado un script que utiliza las órdenes del CLI de Azure para a
 - Se ha creado el script y la MV con los recursos necesarios para poder lanzar el microservicio de gestión de clientes. Además, se ha provisionado la MV con Ansible y se ha desplegado el microservicio.  Más detalles [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito4/automatizacionMV.md#automatizaci%C3%B3n-de-la-creaci%C3%B3n-de-una-m%C3%A1quina-virtual).
 
 MV2: 40.89.155.215
+
+## Orquestación de máquinas virtuales
+
+Se ha creado una MV en Azure utilizando Vagrant. Además, se ha provisionado dicha MV utilizando Ansible también desde Vagrant. Tras todo esto, se ha desplegado en la MV creada el microservicio de gestión de clientes. Todos los detalles se encuentran [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito5/Documentacion.md).
+
+Además, se ha añadido al microservicio de gestión de clientes la funcionalidad necesaria para poder autenticar a los clientes a partir de su email y su contraseña. Para ello, se ha añadido el atributo hash_contrasenia a cada cliente, el cual contiene el hash de la contraseña original y se han añadido a la interfaz REST las siguientes operaciones:
+
+- Operación POST sobre la ruta / login?mail=<mail_cliente>&contrasenia=<contraseña_cliente> que permite a un determinado cliente iniciar sesión.
+- Operación PUT sobre la ruta /contrasenia?mail=<mail_cliente>&contrasenia=<nueva_contrasenia> que permite cambiar la contraseña actual de un cliente existente.
+
+Para implementar esta funcionalidad se ha utilizado Flask-login siguiendo [este tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins). Esta nueva fincionalidad ha sido probada [aqui](https://github.com/mesagon/Proyecto-CC-MII/blob/master/test/test.py).
+
+Cabe destacar que todavía no se han restringido algunas rutas para que solo sean accedidas por clientes autenticados. Esto se hará más adelante.
+
+Por último, mi Vagrantfile ha sido probado por Antonio Javier Cabrera Gutiérrez [aquí]() y yo he probado el suyo [aquí]().

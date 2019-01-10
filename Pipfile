@@ -11,6 +11,7 @@ gunicorn = "*"
 json-logging-py = "*"
 "python3-logstash" = "*"
 flask-login = "*"
+flask-mongoalchemy = "*"
 
 [requires]
 python_version = "3.6"
