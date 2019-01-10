@@ -4,6 +4,8 @@ python:
 install:
 - pip install pipenv
 - pipenv install
+services:
+  - mongodb
 script: python test/test.py
 deploy:
   provider: heroku
