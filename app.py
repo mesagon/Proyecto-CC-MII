@@ -241,7 +241,7 @@ gestor = GestorClientes()
 # Crear el cliente de ejemplo
 try:
     
-    gestor.addCliente("Jesus","Mesa Gonzalez","Calle Paseo Moreras 39", "29/06/1996", "ejemplo@gmail.com", "1234")
+    gestor.addCliente("Jesus","Mesa Gonzalez","ejemplo@gmail.com", "29/06/1996", "Calle Paseo Moreras 39", "1234")
 
 except MailYaExiste as e:
     
