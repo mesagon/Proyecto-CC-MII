@@ -6,6 +6,8 @@ install:
 - pipenv install
 services:
   - mongodb
+env:
+  - IP_MONGODB=localhost
 script: python test/test.py
 deploy:
   provider: heroku
