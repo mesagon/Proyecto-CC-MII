@@ -21,7 +21,8 @@ from flask_login import UserMixin
 # Crear la aplicacion.
 app = Flask(__name__)
 app.config["MONGOALCHEMY_DATABASE"] = "clientes"
-
+app.config["MONGOALCHEMY_SERVER"] = os.environ.get("IP_MONGODB")
+ 
 # crear la base de datos.
 db = MongoAlchemy(app)
 
@@ -236,6 +237,15 @@ class MailNoExiste(Exception):
         return(repr(self.value))
         
 gestor = GestorClientes()
+
+# Crear el cliente de ejemplo
+try:
+    
+    gestor.addCliente("Jesus","Mesa Gonzalez","Calle Paseo Moreras 39", "29/06/1996", "ejemplo@gmail.com")
+
+except MailYaExiste as e:
+    
+    pass
 
 @app.route("/")
 def getStatus():
