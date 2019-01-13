@@ -332,3 +332,5 @@ En la imagen vemos que al acceder a la IP de la MV desde el navegador, accedemos
 ### Notas
 
 Como se ha visto en este documento, algunas acciones sobre las MVs, como la desasociación de la IP pública se han realizado desde el portal de Azure en lugar de realizarlas desde el Vagrantfile. Esto es debido a que Vagrant no permite realizar algunas acciones específicas a través del proveedor de Azure.
+
+Por otra parte, la creación de la red privada de las MVs poniendo ambas en la misma red virtual se ha llevado a cabo de forma autónoma (sin mirar tutoriales) creando máquinas virtuales, asignándoles una red, mirándo sus IPs privadas y viendo si a través de de dichas IPs se podían comunicar (con ping).
