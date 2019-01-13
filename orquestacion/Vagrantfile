@@ -1,0 +1,66 @@
+require 'vagrant-azure'
+
+Vagrant.configure('2') do |config|
+
+	config.vm.define "clientes" do |clientes|
+
+  		clientes.vm.box = 'azure-dummy'
+		clientes.ssh.private_key_path = '~/.ssh/id_rsa'
+		
+		clientes.vm.provider 'azure' do |az, override|
+
+    			az.tenant_id = ENV['AZURE_TENANT_ID']
+    			az.client_id = ENV['AZURE_CLIENT_ID']
+    			az.client_secret = ENV['AZURE_CLIENT_SECRET']
+    			az.subscription_id = ENV['AZURE_SUBSCRIPTION_ID']
+
+    			az.vm_name = 'gestionclientes'
+    			az.vm_size = 'Basic_A1'
+    			az.vm_image_urn = 'credativ:Debian:9:9.0.201808270'
+    			az.resource_group_name = 'Hito5-Francia-Central'
+    			az.location = 'francecentral'
+    			az.tcp_endpoints = [80,27017]
+			az.virtual_network_name = "gestionclientesnetwork"
+
+  		end
+
+
+  		clientes.vm.provision "ansible" do |ansible|
+
+    			ansible.playbook = "playbook-Debian-Clientes.yml"
+
+  		end
+ 	end
+
+	config.vm.define "db" do |db|
+
+  		db.vm.box = 'azure-dummy'
+		db.ssh.private_key_path = '~/.ssh/id_rsa'
+
+		db.vm.provider 'azure' do |az, override|
+
+    			az.tenant_id = ENV['AZURE_TENANT_ID']
+    			az.client_id = ENV['AZURE_CLIENT_ID']
+    			az.client_secret = ENV['AZURE_CLIENT_SECRET']
+    			az.subscription_id = ENV['AZURE_SUBSCRIPTION_ID']
+
+    			az.vm_name = 'dbclientes'
+    			az.vm_size = 'Basic_A0'
+    			az.vm_image_urn = 'credativ:Debian:9:9.0.201808270'
+    			az.resource_group_name = 'Hito5-Francia-Central'
+    			az.location = 'francecentral'
+    			az.tcp_endpoints = [80,27017]
+			az.virtual_network_name = "gestionclientesnetwork"
+
+  		end
+
+
+  		db.vm.provision "ansible" do |ansible|
+
+    			ansible.playbook = "playbook-Debian-DB.yml"
+
+  		end
+  	end
+end
+  
+
