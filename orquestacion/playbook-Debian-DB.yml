@@ -1,0 +1,25 @@
+---
+ - hosts: db
+   become: yes
+   tasks:
+   
+   - name: Añadir repositorio para python 3.6 y actualizar repositorios.
+     apt_repository: repo="deb http://ftp.de.debian.org/debian testing main" update_cache=yes state=present
+
+   - name: Instalar python-apt.
+     apt: pkg=python-apt state=present update_cache=yes
+
+   - name: Instalar python 2.7.
+     apt: pkg=python state=present
+
+   - name: Instalar python 3.6.
+     apt: pkg=python3.6 state=present 
+
+   - name: Instalar git.
+     apt: pkg=git state=present
+
+   - name: Instalar mongodb.
+     apt: pkg=mongodb
+
+  
+ 
