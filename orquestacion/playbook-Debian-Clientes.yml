@@ -1,0 +1,58 @@
+---
+ - hosts: clientes
+   become: yes
+   tasks:
+   
+   - name: Añadir repositorio para python 3.6 y actualizar repositorios.
+     apt_repository: repo="deb http://ftp.de.debian.org/debian testing main" update_cache=yes state=present
+
+   - name: Instalar python-apt.
+     apt: pkg=python-apt state=present update_cache=yes
+
+   - name: Instalar python 2.7.
+     apt: pkg=python state=present
+
+   - name: Instalar python 3.6.
+     apt: pkg=python3.6 state=present 
+
+   - name: Instalar pip3.
+     apt: pkg=python3-pip state=present
+
+   - name: Instalar git.
+     apt: pkg=git state=present
+
+   - name: Instalar pipenv.
+     shell: pip3 install pipenv
+
+   - name: Instalar distutils.
+     apt: pkg=python3-distutils state=present
+
+   - name: Clonar proyecto.
+     git: repo=https://github.com/mesagon/Proyecto-CC-MII.git dest=~/Proyecto-CC-MII force=yes
+
+   - name: Establecer entorno virtual.
+     shell: pipenv install
+     args:
+       chdir: ~/Proyecto-CC-MII
+
+   - name: Instalar java jdk 1.8.
+     apt: pkg=openjdk-8-jdk state=present
+
+   - name: Instalar paquetes necesarios.
+     apt: 
+      name: "{{packages}}"
+      state: present
+      update_cache: yes
+     vars:
+      packages:
+        - apt-transport-https
+        - software-properties-common
+        - wget
+  
+   - name: Añadir repositorio para logstash
+     shell: wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add - && echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
+     args:
+      warn: no
+
+   - name: Instalar logstash.
+     apt: pkg=logstash state=latest update_cache=yes
