@@ -2,9 +2,11 @@
 
 Se ha utilizado mongodb para crear una base de datos no relacional destinada a almacenar en ella los datos de los distintos clientes gestionados por el microservicio de gestión de clientes. De esta forma, ahora los datos de los clientes son persistentes y perdurarán en la base de datos hasta que sean eliminados o modificados.
 
-Por tanto, se han adaptado las clases Cliente, GestorClientes y la API REST para trabajar con mongodb utilizando la extensión de flask FlaskAlchemy siguiendo este [tutorial] (https://www.youtube.com/watch?v=yI2FwgunxTk) y la documentación [oficial](http://flask-sqlalchemy.pocoo.org/2.3/), de forma que ahora la adición, eliminación, modificación y consulta de clientes se realiza mediante peticiones a una base de datos mongodb en la cual se encuentran los datos de los mismos.
+Por tanto, se han adaptado las clases Cliente, GestorClientes y la API REST para trabajar con mongodb utilizando la extensión de flask MongoAlchemy siguiendo este [tutorial](https://www.youtube.com/watch?v=yI2FwgunxTk) y la documentación [oficial](https://pythonhosted.org/Flask-MongoAlchemy/), de forma que ahora la adición, eliminación, modificación y consulta de clientes se realiza mediante peticiones a una base de datos mongodb en la cual se encuentran los datos de los mismos.
 
 Esta base de datos se va a implementar en una MV aparte, de forma que la MV con el microservicio de gestión de clientes se va a conectar a dicha MV para realizar las distintas consultas. Por tanto, vamos a tener que crear dos MVs para lo cual utilizaremos Vagrant, como veremos más adelante.
+
+La base de datos se crea en una MV independiente para de esta forma no ocupar tanto espacio en la misma MV en la que se despliega el microservicio de gestión de clientes. Además, esto permitirá que en un futuro, si añadimos más microservicios, podamos almacenar de forma centralizada los datos de todos esos microservicios en una sola MV.
 
 Por último, cabe destacar que también se han adaptado los tests del microservicio para probar la nueva funcionalidad.
 
@@ -216,7 +218,7 @@ Con este playbook realizamos las siguientes tareas.
 
 ### Ejecución del Vagrantfile
 
-Una vez realizado el  Vagrantfile (el cual se encuentra [aqui]() "levantamos" en Azure las MVs con la siguiente orden (situándonos en el directiorio del Vagrantfile).
+Una vez realizado el  Vagrantfile (el cual se encuentra [aqui](https://github.com/mesagon/Proyecto-CC-MII/blob/master/orquestacion/Vagrantfile)) "levantamos" en Azure las MVs con la siguiente orden (situándonos en el directiorio del Vagrantfile).
 
 ~~~
 $ vagrant up --no-parallel
@@ -331,6 +333,6 @@ En la imagen vemos que al acceder a la IP de la MV desde el navegador, accedemos
 
 ### Notas
 
-Como se ha visto en este documento, algunas acciones sobre las MVs, como la desasociación de la IP pública se han realizado desde el portal de Azure en lugar de realizarlas desde el Vagrantfile. Esto es debido a que Vagrant no permite realizar algunas acciones específicas a través del proveedor de Azure.
+Como se ha visto en este documento, algunas acciones sobre las MVs, como la desasociación de la IP pública se han realizado desde el portal de Azure en lugar de realizarlas desde el Vagrantfile. Esto es debido a que Vagrant no permite realizar algunas acciones específicas (o yo no las he encontrado) a través del proveedor de Azure.
 
 Por otra parte, la creación de la red privada de las MVs poniendo ambas en la misma red virtual se ha llevado a cabo de forma autónoma (sin mirar tutoriales) creando máquinas virtuales, asignándoles una red, mirándo sus IPs privadas y viendo si a través de de dichas IPs se podían comunicar (con ping).
