@@ -75,15 +75,8 @@ MV2: 40.89.155.215
 
 ## Orquestación de máquinas virtuales
 
-Se ha creado una MV en Azure utilizando Vagrant. Además, se ha provisionado dicha MV utilizando Ansible también desde Vagrant. Tras todo esto, se ha desplegado en la MV creada el microservicio de gestión de clientes. Todos los detalles se encuentran [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito5/Documentacion.md).
-
-Además, se ha añadido al microservicio de gestión de clientes la funcionalidad necesaria para poder autenticar a los clientes a partir de su email y su contraseña. Para ello, se ha añadido el atributo hash_contrasenia a cada cliente, el cual contiene el hash de la contraseña original y se han añadido a la interfaz REST las siguientes operaciones:
-
-- Operación POST sobre la ruta / login?mail=<mail_cliente>&contrasenia=<contraseña_cliente> que permite a un determinado cliente iniciar sesión.
-- Operación PUT sobre la ruta /contrasenia?mail=<mail_cliente>&contrasenia=<nueva_contrasenia> que permite cambiar la contraseña actual de un cliente existente.
-
-Para implementar esta funcionalidad se ha utilizado Flask-login siguiendo [este tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins). Esta nueva fincionalidad ha sido probada [aqui](https://github.com/mesagon/Proyecto-CC-MII/blob/master/test/test.py).
-
-Cabe destacar que todavía no se han restringido algunas rutas para que solo sean accedidas por clientes autenticados. Esto se hará más adelante.
+Se han creado dos MVs en Azure utilizando Vagrant y se han provisionado dichas MVs utilizando Ansible también desde Vagrant. Tras todo esto, se ha desplegado el gestión de clientes. Además, se ha añadido al microservicio de gestión de clientes la funcionalidad necesaria para poder almacenar los datos de los distintos clientes en una base de datos de MongoDB. Todos los detalles se encuentran [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito5/Documentacion.md).
 
 Por último, mi Vagrantfile ha sido probado por Antonio Javier Cabrera Gutiérrez [aquí]() y yo he probado el suyo [aquí]().
+
+Despliegue Vagrant: http://20.188.33.53/
