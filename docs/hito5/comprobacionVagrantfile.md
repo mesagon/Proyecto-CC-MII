@@ -15,3 +15,9 @@ Vemos como se crea y se provisiona correctamente la MV con la base de datos. A c
 ![Imagen no encontrada](img/provisionMVApp-2.png)
 
 Finalmente, se puede observar que la MV que contendrá la aplicación también se crea y provisiona correctamente, con lo cual hemos verificado que el Vagrantfile funciona correctamente.
+
+Ahora realizamos el despliegue y comprobamos que funciona.
+
+![Imagen no encontrada](img/despliegueMVAntonio.png)
+
+Al acceder a la ruta / de la IP de la máquina nos descarga un fichero en formato json en el que se nos devuelve status:OK y una ruta de ejemplo.
