@@ -2,7 +2,7 @@
 
 Vamos ha comprobar el Vagrantfile de Antonio Javier Cabrera Gutiérrez. Para ello, nos descargamos su Vagrantfile y sus playbooks de provisionamiento, los ponemos todos en un mismo directorio, establecemos las variables de entorno necesarias para conectar con nuestra cuenta de Azure y ejecutamos vagrant up.
 
-El vagrantfile debe crear y provisonar dos MVs, una de ellas contendrá la aplicación y la otra su base de datos.
+El vagrantfile debe crear y provisonar dos MV, una de ellas contendrá la aplicación y la otra su base de datos.
 
 ![Imagen no encontrada](img/creacionMVDatabase.png)
 ![Imagen no encontrada](img/provisionMVDatabase-1.png)
