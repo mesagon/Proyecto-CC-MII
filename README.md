@@ -79,4 +79,4 @@ Se han creado dos MVs en Azure utilizando Vagrant y se han provisionado dichas M
 
 Por último, mi Vagrantfile ha sido probado por Antonio Javier Cabrera Gutiérrez [aquí]() y yo he probado el suyo [aquí]().
 
-Despliegue Vagrant: http://20.188.33.53/
+Despliegue Vagrant: 20.188.33.53
