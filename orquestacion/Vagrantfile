@@ -24,11 +24,12 @@ Vagrant.configure('2') do |config|
 
   		end
 
-
-  		clientes.vm.provision "ansible" do |ansible|
+		clientes.vm.provision "file", source: "~/Proyecto-CC-MII", destination: "~/Proyecto-CC-MII"
+  
+		clientes.vm.provision "ansible" do |ansible|
 
     			ansible.playbook = "playbook-Debian-Clientes.yml"
-
+			
   		end
  	end
 
@@ -53,7 +54,6 @@ Vagrant.configure('2') do |config|
 			az.virtual_network_name = "gestionclientesnetwork"
 
   		end
-
 
   		db.vm.provision "ansible" do |ansible|
 
