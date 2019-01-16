@@ -80,3 +80,5 @@ Se han creado dos MVs en Azure utilizando Vagrant y se han provisionado dichas M
 Por último, mi Vagrantfile ha sido probado por Antonio Javier Cabrera Gutiérrez [aquí](https://github.com/javiercabrera184/ProyectoCC/blob/master/docs/Hito5.md#jesus-mesa) (el enlace puede que lleve un poco más arriba por error) y yo he probado el suyo [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito5/comprobacionVagrantfile.md).
 
 Despliegue Vagrant: 20.188.33.53
+
+[![Build Status](https://travis-ci.org/mesagon/Proyecto-CC-MII.svg?branch=master)](https://travis-ci.org/mesagon/Proyecto-CC-MII)
