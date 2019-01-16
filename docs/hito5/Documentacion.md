@@ -115,9 +115,19 @@ Vamos a ver uno por uno los parámetros anteriores:
 - tcp_endpoints: Con este parámetro indicamos los puertos o el puerto que queremos abrir en la MV (aparte del 22 para ssh que se abre por defecto). En este caso vemos que abrimos el puerto 80 a través del cual estará escuchando nuestro microservicio y el puerto 27017 para permitir tráfico entrante y saliente a través del puerto 27017, que es el puerto a través del que nos comunicaremos con la MV que tendrá la base de datos de mongo.
 - virtual_network_name: Es el nombre de la red virtual a la qu pertenecerá la MV. Dicha red es gestionclientesnetwork, la cual no existe en principio pero Azure se encargará de crearla con ese nombre. Dentro de esta red también pondremos posteriormente a la MV con la base de datos, para que ambas MVs pertenezcan a la misma red privada y se puedan comunicar a través de ella sin necesidad de hacerlo de forma pública, lo cual es más seguro.
 
+A continuación copiamos desde Vagrant una carpeta denominada "Proyecto-CC-MII" la cual se encuantra en la carpeta paresonal de mi PC local y que contiene únicamente los ficheros necesarios para realizar el despliege de la aplicación. Para ello, en el Vagrantfile se ha puesto la siguiente línea.
+
+~~~
+clientes.vm.provision "file", source: "~/Proyecto-CC-MII", destination: "~/Proyecto-CC-MII"
+~~~
+
+Con la orden clientes.vm.provision "file" podemos copiar carpetas y archivos de nuestro ordenador en el directorio deseado de la MV que estemos creando tal y como vemos [aqui](https://www.vagrantup.com/docs/provisioning/file.html).
+
+De esta forma, evitamos tener que clonar todo el repositorio de GitHub de nuestro proyecto, en el cual hay ficheros que no son necesarios para realizar el despliegue del microservicio. Por tanto, se ha quitado del playbook de Ansible la orden para clonar el repositorio.
+
 Por último, nos queda añadir al vagrantfile las líneas necesarias para realizar el provisionamiento de la MV de cara a instalar todas las dependencias necesarias para poder desplegar en ella el microservicio de gestión de clientes. Tal y como hemos visto en el [tema](http://jj.github.io/CC/documentos/temas/Orquestacion#provisionando-m%C3%A1quinas-virtuales) correspondiente Vagrant también permite realizar el provisionamiento de la MV creada mediante múltiples gestores de configuración. De esta forma automatizamos más aún el proceso de provisionamiento y despliegue.
 
-El provisionamiento se realizará con Ansible y será realizado por el propio Vagrant, añadiendo al Vagrantfile las siguientes líneas.
+El provisionamiento se realizará con Ansible y será llevado a cabo por el propio Vagrant, añadiendo al Vagrantfile las siguientes líneas.
 
 ~~~
     clientes.vm.provision "ansible" do |ansible|
@@ -225,6 +235,8 @@ $ vagrant up --no-parallel
 ~~~
 
 Vamos que utilizamos la opción --no-parallel. Esto hace que las MVs se creen de forma secuencial en Azure. Se ha hecho así por que Azure daba errores al crearlas en paralelo. Esta opción se ha consultado [aquí](https://www.vagrantup.com/docs/cli/up.html). Recordemos también que deberemos de exportar las cuatro variables de entorno del service principal para que vagrant pueda acceder a nuestra cuenta de Azure.
+
+Se ha descubierto que Azure daba errores al crear las MVs al ejecutar el Vagrantfile con vagrant up. En primer lugar daba un error de IP pública no encontrada con la MV "clientes", tras esto se volvió a ejecutar y se obtuvo el mismo error con la MV "db". Entonces se puso el código de creación y provisonamiento de las dos MVs en dos Vagrantfile independientes y se ejecutó uno detrás de otro. En este último caso funcionó y de ahi se llegó a la conclusión de que Azure daba el error al tratar de crear las dos MVs en paralelo.
 
 #### Levantando la MV con el microservicio de gestión de Clientes
 
