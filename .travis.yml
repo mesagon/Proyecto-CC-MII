@@ -9,9 +9,4 @@ services:
 env:
   - IP_MONGODB=localhost
 script: python test/test.py
-deploy:
-  provider: heroku
-  api_key:
-    secure: "YKTENTbgFFnRbkYgT7AkKzcL27y4/BOVt0Ck186y4VOOTAaCZ5llSmYopIZ78+JmNNuOp/jCbZPmTLEtva65+Gmgqo3VIVnyfBl7d3N8OyFuZcHFhTLzCtvMeVU3+iT+e831aAcmcaukGzP4V20H6UuCFeibl1k+Gt79YGiNlQZJ9zbl3DgXVW8RmU4+f3/jh3i6xM/fBDIuG7V/u3j4ke3IXnynz8qWNLKHhMBaYs25QR/6H/WFG1Sn+xUwF0oIpV7QL0ECsqKyKGUNK2jg2eYkEwcf9xxEZ645MmZ0on2fPifb7LSvA0h+Tmb6cyd73FsdktrqWSGU4EFrMsJ5eEsvyw3y+2FYhlEDioXSZGxWCVptPIG4toMyvdIkZkIrxSghOHxYftc3SZ2kUwBZPnUooV/eA4EARUfcMsqpUZQAalpi+IgLh6SrESiZpL6vymyBvO68u5ILy9FQtHa6nMa05OkuPdSHkEm/RhiHuiPx9nKcAKkADK9IriOBfiPqBs6WTa9YhOXLDtxbVU58cszdO9EufzzncXIinm21eanYC7labqRofBKypMU1YBqARDPiX6JzG/2NblGXMGAsHZGHO7U7evnWYkYluWWcO69sWWBAE3hPYNAgkiR9rxMdg0ANHonBA6sKyJ1jt63WHND2AqbaK2M+hiIqyV3udak="
-  app: gestion-clientes-cc
 
