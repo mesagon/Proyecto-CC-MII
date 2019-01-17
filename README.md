@@ -1,5 +1,7 @@
 # Proyecto-CC-MII
 
+[![Build Status](https://travis-ci.org/mesagon/Proyecto-CC-MII.svg?branch=master)](https://travis-ci.org/mesagon/Proyecto-CC-MII)
+
 ### Descripción del problema
 
 En una empresa online se requiere un servicio para la gestión más eficaz y escalable de las incidencias de los clientes con sus productos, puesto que dicha gestión se realiza mediante atención telefónica, lo cual hace que la empresa invierta bastantes recursos en este apartado a cambio de una baja escalabilidad. Por otro lado, algunos clientes encuentran esta gestión bastante incómoda.  
@@ -80,5 +82,3 @@ Se han creado dos MVs en Azure utilizando Vagrant y se han provisionado dichas M
 Por último, mi Vagrantfile ha sido probado por Antonio Javier Cabrera Gutiérrez [aquí](https://github.com/javiercabrera184/ProyectoCC/blob/master/docs/Hito5.md#jesus-mesa) (el enlace puede que lleve un poco más arriba por error) y yo he probado el suyo [aquí](https://github.com/mesagon/Proyecto-CC-MII/blob/master/docs/hito5/comprobacionVagrantfile.md).
 
 Despliegue Vagrant: 20.188.33.53
-
-[![Build Status](https://travis-ci.org/mesagon/Proyecto-CC-MII.svg?branch=master)](https://travis-ci.org/mesagon/Proyecto-CC-MII)
