@@ -15,9 +15,13 @@ Vemos como ambas MVs se crean correctamente y sin problemas. Ahora, para realiza
 $ vagrant ssh db
 ~~~
 
-Una vez hemos accedido a la MV, abrimos el fichero /etc/mongod.conf y cambiamos el campo bind_ip por la ip privada (la podemos consultar en el portal de Azure, en este caso es 10.0.0.5) de la MV que contiene el microservicio, para que de esta forma la MV con la base de datos solo reciba peticiones de la MV que contiene el microservicio.
+Una vez hemos accedido a la MV, abrimos el fichero /etc/mongod.conf y cambiamos el campo bind_ip por la ip privada (la podemos consultar en el portal de Azure, en este caso es 10.0.0.5) de la MV que contiene el microservicio, para que de esta forma la MV con la base de datos solo reciba peticiones de la MV que contiene el microservicio. Tras editar este campo, reiniciamos mongod para que los cambios surtan efecto.
 
-Tras esto accedemos por ssh a la MV que contiene el microservicio y lo desplegamos con los tres comandos siguientes.
+~~~
+$ sudo service mongod restart
+~~~
+
+A continuación accedemos por ssh a la MV que contiene el microservicio y lo desplegamos con los tres comandos siguientes.
 
 ~~~
 $ vagrant ssh app
